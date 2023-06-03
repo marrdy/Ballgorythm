@@ -35,14 +35,14 @@ public class SCScript : MonoBehaviour
     {
         
         SceneNumber = SceneManager.sceneCountInBuildSettings-1;
-        Debug.Log(SceneNumber);
+     
         animator.SetTrigger("FadeOut");
     }
     public void achievement()
     {
 
         SceneNumber = SceneManager.sceneCountInBuildSettings - 2;
-        Debug.Log(SceneNumber);
+    
         animator.SetTrigger("FadeOut");
     }
 
@@ -59,14 +59,14 @@ public class SCScript : MonoBehaviour
     }
     public void FadeResetLevel()
     {
-        Debug.Log("scene-"+ SceneManager.GetActiveScene().buildIndex);
+       
         SceneNumber = SceneManager.GetActiveScene().buildIndex;
         animator.SetTrigger("FadeOut");
     }
 
     public void OnFadeComplete()
     {
-        Debug.Log("scene-" + SceneNumber);
+        
         SceneManager.LoadScene(SceneNumber);
     }
 
@@ -80,5 +80,9 @@ public class SCScript : MonoBehaviour
         }
       
         animator.SetTrigger("FadeOut");
+    }
+    public void quit()
+    {
+        Application.Quit();
     }
 }

@@ -70,22 +70,14 @@ public class LevelLocker : MonoBehaviour
     {
         LevelData data = DataSaver.loadlocklevel();
         CurrentLevel = data.CurrentLevel;
+        
         CurrentLevelLabel.text = "Current level :"+CurrentLevel.ToString();
         Debug.Log(CurrentLevel);
     }
    
 
 
-    public void levelUp()
-    {
-        LevelData data = DataSaver.loadlocklevel();
-        CurrentLevel = data.CurrentLevel;
-        if(CurrentLevel<= SceneManager.GetActiveScene().buildIndex)
-        {
-            CurrentLevel++;
-            DataSaver.ProgressData(this);
-        }
-    }
+   
 
       
 

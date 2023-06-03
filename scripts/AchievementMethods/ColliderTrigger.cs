@@ -12,6 +12,7 @@ public class ColliderTrigger : MonoBehaviour
         AchievementTriggerScripts.AchievementTriggered(indexOfAchievement);
         GameObject spawnDialog = Instantiate(dialog);
         AchievementAdder LoadedData = DataSaver.LoadAchievements();
+        spawnDialog.GetComponent<AchievementTabs>().fadein();
         title = LoadedData.achivecache[indexOfAchievement].AchivementName;
         descrip = LoadedData.achivecache[indexOfAchievement].AchivementDescription;
         spawnDialog.GetComponent<AchievementTabs>().Title.text = title;
@@ -22,6 +23,8 @@ public class ColliderTrigger : MonoBehaviour
     {
         Debug.Log("closing");
         yield return new WaitForSeconds(2);
+        close.GetComponent<AchievementTabs>().fadeout();
+        yield return new WaitForSeconds(3);
         Destroy(close);
     }
 

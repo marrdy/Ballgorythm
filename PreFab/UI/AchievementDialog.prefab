@@ -443,6 +443,7 @@ GameObject:
   - component: {fileID: 2172263433648614957}
   - component: {fileID: 6620754534420986605}
   - component: {fileID: 889669942817565433}
+  - component: {fileID: 4955722031085009527}
   m_Layer: 5
   m_Name: Diabox
   m_TagString: Untagged
@@ -470,7 +471,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -189.69951, y: 88.19702}
+  m_AnchoredPosition: {x: -143, y: 79}
   m_SizeDelta: {x: 510.7379, y: 146.0506}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6620754534420986605
@@ -511,6 +512,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &4955722031085009527
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5953508965135882117}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 51d1dc520da28c84a86d7410f7d00b05, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7822219921757797630
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,6 +650,7 @@ MonoBehaviour:
   Title: {fileID: 7782027722774427366}
   Description: {fileID: 6933643778907783964}
   AchievedCheck: {fileID: 6891741571042323518}
+  animator: {fileID: 4955722031085009527}
 --- !u!1 &8976859678916239422
 GameObject:
   m_ObjectHideFlags: 0

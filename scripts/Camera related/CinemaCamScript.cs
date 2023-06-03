@@ -23,7 +23,7 @@ public class CinemaCamScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("untoggled");  
+           
             animator.Play("GoalCam");  
         }
     }

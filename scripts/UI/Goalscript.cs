@@ -9,7 +9,7 @@ public class Goalscript : MonoBehaviour
     public GameObject finnalpannel;
     public Collider player;
     public Rigidbody RBplayer;
-    public LevelLocker LevelUpEvent;
+    public LevelIncrementor LevelUpEvent;
     bool showpan;
     bool stoped = false;
     bool done = false;
