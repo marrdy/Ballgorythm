@@ -72,7 +72,7 @@ public class LevelLocker : MonoBehaviour
         CurrentLevel = data.CurrentLevel;
         
         CurrentLevelLabel.text = "Current level :"+CurrentLevel.ToString();
-        Debug.Log(CurrentLevel);
+       
     }
    
 

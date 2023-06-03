@@ -17,6 +17,7 @@ public class AchievementsLoader : MonoBehaviour
         try
         {
             LoadAchievements();
+            Debug.Log("loaded");
         }
         catch 
         {
@@ -24,9 +25,9 @@ public class AchievementsLoader : MonoBehaviour
         }
        
             SetUpData();
+        Debug.Log("setted up");
 
-     
-        
+
     }
     public void SetUpData()
     {
@@ -56,6 +57,7 @@ public class AchievementsLoader : MonoBehaviour
     {
         foreach(achiveclass i in adder)
         {
+            Debug.Log("LOADED ACHIEVEMENT:"+i.AchivementName);
             i.Achived = false;
         }
         DataSaver.AchivementDataSave(this);
@@ -64,9 +66,11 @@ public class AchievementsLoader : MonoBehaviour
     public void LoadAchievements()
     {
        AchievementAdder LoadedData=  DataSaver.LoadAchievements();
-        if (LoadedData != null)
+      
+        if (LoadedData.achivecache.Length != 0 && LoadedData !=null)
         {
             adder = LoadedData.achivecache;
+            Debug.Log(LoadedData.achivecache.Length);
         }
         else
         {
