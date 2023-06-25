@@ -25,6 +25,7 @@ public class ForcePlarform : MonoBehaviour
     public GameObject hidePlats;
     public SceneProj sp;
     public PlayerMovement PMVM;
+    public CutScene cutScene;
     public void Clicked3d()
     {
 
@@ -32,7 +33,7 @@ public class ForcePlarform : MonoBehaviour
         SecondCam.LookAt = TransformForcePlat;
         SecondCam.Follow = TransformForcePlat;
         animator.Play("ViewOtherEnt");
-        FindAnyObjectByType<CutScene>().MainHud.SetActive(false);
+        cutScene.MainHud.SetActive(false);
         hidePlats.GetComponent<UImanager>().ActivateControl(false);
     }
     public void setDelay()
@@ -41,7 +42,7 @@ public class ForcePlarform : MonoBehaviour
         Panel.SetActive(false);
         animator.Play("PlayerCam");
         delayValue.text = ExecutionDeley.ToString("0.0");
-        FindAnyObjectByType<CutScene>().MainHud.SetActive(true);
+        cutScene.MainHud.SetActive(true);
         hidePlats.GetComponent<UImanager>().ActivateControl(true);
     }
     public void SliderChangeText()
@@ -56,7 +57,7 @@ public class ForcePlarform : MonoBehaviour
       
         Debug.Log("hit");
         yield return new WaitForSeconds(3);
-        //player.AddForce(force * 2);
+       
         yield return null;
     }
 
@@ -67,7 +68,6 @@ public class ForcePlarform : MonoBehaviour
         Debug.Log("Triggered");
             player = other.GetComponent<Rigidbody>();
             collided = true;
-         //  StartCoroutine(ExeDel());
         player.AddForce(force * 2);
 
     }
@@ -78,29 +78,5 @@ public class ForcePlarform : MonoBehaviour
 
 
    
-    void Update()
-    {
-
-       
-        //Debug.Log(this.name +" = "+ collided);
-        //if (collided)
-        //{ 
-        //if (timer >= ExecutionDeley) { 
-           
-        //    player.isKinematic = true;
-        //    player.isKinematic = false;
-        //    player.AddForce(force * 2);
-        //    collided = false;
-        //}
-        //else
-        //{
-        //    timer = timer + (1 * Time.deltaTime);
-
-        //}
-        //}
-      
-        
-       
-
-    }
+   
 }

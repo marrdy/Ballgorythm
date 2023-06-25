@@ -42,7 +42,12 @@ public class SCScript : MonoBehaviour
     {
 
         SceneNumber = SceneManager.sceneCountInBuildSettings - 2;
-    
+        animator.SetTrigger("FadeOut");
+    }
+public void Settings()
+    {
+
+        SceneNumber = SceneManager.sceneCountInBuildSettings - 3;
         animator.SetTrigger("FadeOut");
     }
 

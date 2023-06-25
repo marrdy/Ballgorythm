@@ -5,6 +5,7 @@ using TMPro;
 
 public class Goalscript : MonoBehaviour
 {
+    
     float delay = 0;
     public GameObject finnalpannel;
     public Collider player;
@@ -14,6 +15,7 @@ public class Goalscript : MonoBehaviour
     bool stoped = false;
     bool done = false;
     PlayerMovement pp;
+    public timerPush tp;
     private void OnTriggerEnter(Collider other)
     {
         if (!stoped)
@@ -21,6 +23,7 @@ public class Goalscript : MonoBehaviour
             RBplayer.isKinematic = true;
             stoped = true;
         }
+        tp.finishtime();
         player.isTrigger = true;
         RBplayer.isKinematic = false;
         showpan = true;

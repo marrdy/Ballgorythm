@@ -9,7 +9,9 @@ public class SceneProj : MonoBehaviour
     public PhysicsScene PS;
 
     [SerializeField] private Transform ObjectsInProjection;
+   
     [SerializeField] private LineRenderer _line;
+  
     [SerializeField] private int _maxPhysicsFrameIterations = 500;
  
     private readonly Dictionary<Transform, Transform> _spawnedObjects = new Dictionary<Transform, Transform>();
@@ -17,6 +19,7 @@ public class SceneProj : MonoBehaviour
     {
        
         CreateProjection();
+       
     }
     void CreateProjection()
     {
@@ -47,12 +50,13 @@ public class SceneProj : MonoBehaviour
         ghostObj.name = "Simulation";
         //ghostObj.initpush(velocity);
         ghostObj.rb.AddForce(velocity);
-        
+      
         _line.positionCount = _maxPhysicsFrameIterations;
-
+        _line.gameObject.layer = 7;
         for (var i = 0; i < _maxPhysicsFrameIterations; i++)
         {
             _line.SetPosition(i, ghostObj.transform.position);
+           
            
             
             if (player.AimAssistExtend)

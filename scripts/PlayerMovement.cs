@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     float yformula;
     float zformula;
     public GameObject AAEbutton;
-  
+    public timerPush timercounter;
     [SerializeField] private SceneProj _projection;
 
 
@@ -93,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Push()
     {
-
+        timercounter.counting = true;
         if (notyetpushed) {
 
             xformula = xslider.value - (xslider.maxValue / 2);
@@ -127,6 +127,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void again()
     {
+        timercounter.resettimer();
         rb.isKinematic = !rb.isKinematic;
         rb.isKinematic = !rb.isKinematic;
         transform.position = startpos;

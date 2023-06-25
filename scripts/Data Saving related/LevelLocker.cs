@@ -35,20 +35,16 @@ public class LevelLocker : MonoBehaviour
             loadlevels();
            
         }
-        catch(Exception e)
+        catch
         {
             resetprog();
             Debug.Log("No file found, new fresh file has been generated...");
             loadlevels();
         }
-        try
-        {
+       
             LockingTheLevels();
-        }
-        catch
-        {
-
-        }
+        
+       
 
     }
     public void resetprog()
@@ -70,8 +66,14 @@ public class LevelLocker : MonoBehaviour
     {
         LevelData data = DataSaver.loadlocklevel();
         CurrentLevel = data.CurrentLevel;
-        
+        try
+        {
         CurrentLevelLabel.text = "Current level :"+CurrentLevel.ToString();
+        }
+        catch{
+
+        }
+       
        
     }
    
