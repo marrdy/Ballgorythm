@@ -137,12 +137,16 @@ MonoBehaviour:
     AchivementDescription: Understand how x, y z axis works(Complete level 3 ).
     Achived: 0
   - AchivementName: Speed of light.
-    AchivementDescription: Where are you now though??
+    AchivementDescription: 'Where are you now though?? Also the Console in the back
+      end is screaming...
+
+'
     Achived: 0
-  - AchivementName: Its all when it started.
-    AchivementDescription: If this didnt exist, neither this game would.
+  - AchivementName: Plan B may 10 2023
+    AchivementDescription: Made within 2 days because we failed to explain a project
+      that actually help society...
     Achived: 0
   - AchivementName: Force Point expert.
     AchivementDescription: Complete the force point level without using the extend
-      aim assist.
+      aim assist in level 8.
     Achived: 0

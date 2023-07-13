@@ -1090,7 +1090,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1637013336}
+  animateballNcam: {fileID: 0}
   cl: {fileID: 0}
+  ballpush: {fileID: 0}
+  CMS: {fileID: 0}
+  mainhud: {fileID: 0}
 --- !u!95 &1637013336
 Animator:
   serializedVersion: 5
@@ -1195,7 +1199,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1824804026}
   m_HandleRect: {fileID: 1824804025}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1562,7 +1566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2448852235503107583, guid: fb1e1a3a822caea41a58ab8dd9a13cc7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 127.092445
+      value: 121.66511
       objectReference: {fileID: 0}
     - target: {fileID: 2448852235503107583, guid: fb1e1a3a822caea41a58ab8dd9a13cc7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

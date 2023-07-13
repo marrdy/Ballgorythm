@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5551375976437758898}
   - component: {fileID: 5857603920052912503}
   - component: {fileID: 3425844417080030669}
+  - component: {fileID: 3141013875698529136}
   m_Layer: 0
   m_Name: Goalhole
   m_TagString: Untagged
@@ -97,11 +98,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2fa578073c416541b33a744a6186532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   finnalpannel: {fileID: 2564967857702442888, guid: b6a32fc66dfa5a3498ab041e9b9b6bbf, type: 3}
   player: {fileID: 0}
   RBplayer: {fileID: 0}
   LevelUpEvent: {fileID: 0}
+  CurrentLevel: 0
+  NoAimAssist: 1
+  Intime: 1
   tp: {fileID: 0}
+  mainhud: {fileID: 0}
+  blackcanvas: {fileID: 0}
+  ccs: {fileID: 0}
+  starsEarned: 1
 --- !u!65 &3425844417080030669
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -115,3 +124,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 1, z: 0.3}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3141013875698529136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6213696236939167789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f55dfddcbfa9044bd3d512c442389a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  starData:
+    starsEarned: 

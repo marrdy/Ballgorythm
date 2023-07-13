@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -20,7 +21,19 @@ public static class DataSaver
     }
 
 
-    public static AchievementAdder LoadAchievements()
+
+    public static AchievementAdder achReset(achiveclass[] adder)
+    {
+          BinaryFormatter BF = new BinaryFormatter();    
+             FileStream FS = new FileStream(PathForAchivement, FileMode.Create);
+             AchievementsLoader Info = new AchievementsLoader();
+             Info.adder = adder;
+             AchievementAdder data = new AchievementAdder(Info);
+             BF.Serialize(FS, data);
+             FS.Close();
+             return data;
+    }
+    public static AchievementAdder LoadAchievements(achiveclass[] adder)
     {
         if (File.Exists(PathForAchivement))
         {
@@ -34,7 +47,9 @@ public static class DataSaver
         else
         {
             Debug.LogError("NO FILE LOADED");
-            return null;
+           
+           
+            return  achReset(adder);
           
         }
 
@@ -61,11 +76,12 @@ public static class DataSaver
         }
         else 
         {
-            Debug.LogError(PathForAchivement + " was not found, new file save is created");
+            Debug.LogError(PathForAchivement + " was not found, new file save is created, level start to 0 and stars resets...");
             BinaryFormatter BF = new BinaryFormatter();
             FileStream FS = new FileStream(PathForLevel, FileMode.Create);
             LevelLocker newlock = new LevelLocker();
-            newlock.CurrentLevel = 1;
+            newlock.CurrentLevel = 0;
+            newlock.starsperlevel = new int[SceneManager.sceneCountInBuildSettings-4];
             LevelData data = new LevelData(newlock);
             BF.Serialize(FS, data);
             FS.Close();
@@ -73,5 +89,23 @@ public static class DataSaver
         }
         
     }
-   
+   public static bool resetprogress()
+   {
+     Debug.Log(PathForLevel);
+        bool closeapp =false;
+        if (File.Exists(PathForLevel))
+        {
+            File.Delete(PathForLevel);
+            Debug.Log("Progress file deleted.");
+            closeapp = true;
+        }
+
+        if (File.Exists(PathForAchivement))
+        {
+            File.Delete(PathForAchivement);
+            Debug.Log("Achievement file deleted.");
+            closeapp = true;
+        }
+        return closeapp;
+   }
 }

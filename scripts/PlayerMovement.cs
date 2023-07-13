@@ -26,31 +26,27 @@ public class PlayerMovement : MonoBehaviour
     public GameObject ShowEntToggle;
     public bool notyetpushed = true;
     public Transform playerpos;
+    public Image star;
     bool ActiveSinceFirstPlace;
     float xformula;
     float yformula;
     float zformula;
     public GameObject AAEbutton;
     public timerPush timercounter;
+    public Goalscript gs;
     [SerializeField] private SceneProj _projection;
 
 
     float SlowExecution;
     private void Update()
     {
-        if (SlowExecution <= 1)
-        {
-            SlowExecution = SlowExecution + 1 * Time.deltaTime;
-        }
-        else
-        {
+       
             if (notyetpushed)
             {
                 Vector3 simulationforce = new Vector3(float.Parse(xvalue.text), float.Parse(yvalue.text), float.Parse(zvalue.text));
                 _projection.SimulateTrajectory(this, startpos, simulationforce * 2);
             }
-            SlowExecution = 0;
-        }
+      
 
 
     }
@@ -70,17 +66,17 @@ public class PlayerMovement : MonoBehaviour
         if (Axis == "x")
         {
             xformula = xslider.value - (xslider.maxValue / 2);
-            xvalue.text = xformula.ToString();
+            xvalue.text = xformula.ToString("0.0");
         }
         else if (Axis == "y")
         {
             yformula = yslider.value - (yslider.maxValue / 2);
-            yvalue.text = yformula.ToString();
+            yvalue.text = yformula.ToString("0.0");
         }
         else if (Axis == "z")
         {
             zformula = zslider.value - (zslider.maxValue / 2);
-            zvalue.text = zformula.ToString();
+            zvalue.text = zformula.ToString("0.0");
         }
 
 
@@ -102,9 +98,6 @@ public class PlayerMovement : MonoBehaviour
             ActiveSinceFirstPlace = ShowEntToggle.activeSelf;
             ShowEntToggle.SetActive(false);
             uimanager.ActivateControl(false);
-
-
-
             APforce = new Vector3(float.Parse(xvalue.text), float.Parse(yvalue.text), float.Parse(zvalue.text));
             initpush(APforce * 2);
             ptext.text = "Retry";
@@ -114,19 +107,21 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            ShowEntToggle.SetActive(true);
-            uimanager.ActivateControl(true);
-            if (ActiveSinceFirstPlace) { ShowEntToggle.SetActive(true); }
-            Vector3 simulationforce = new Vector3(float.Parse(xvalue.text), float.Parse(yvalue.text), float.Parse(zvalue.text));
-            this.GetComponent<LineRenderer>().enabled = true;
-            _projection.SimulateTrajectory(this, startpos, simulationforce * 2);
-            again();
-            ptext.text = "Push";
-            notyetpushed = true;
+            
+               again();
         }
     }
     public void again()
     {
+        ShowEntToggle.SetActive(true);
+        uimanager.ActivateControl(true);
+        if (ActiveSinceFirstPlace) { ShowEntToggle.SetActive(true); }
+        Vector3 simulationforce = new Vector3(float.Parse(xvalue.text), float.Parse(yvalue.text), float.Parse(zvalue.text));
+        this.GetComponent<LineRenderer>().enabled = true;
+        _projection.SimulateTrajectory(this, startpos, simulationforce * 2);
+         ptext.text = "Push";
+        notyetpushed = true;
+        this.GetComponent<LineRenderer>().enabled = true;
         timercounter.resettimer();
         rb.isKinematic = !rb.isKinematic;
         rb.isKinematic = !rb.isKinematic;
@@ -144,12 +139,25 @@ public class PlayerMovement : MonoBehaviour
         xslider.value = 1000;
         yslider.value = 1000;
         zslider.value = 1000;
+        xvalue.text = 0.ToString();
+        yvalue.text = 0.ToString();
+        zvalue.text = 0.ToString();
+
     }
 
     public void ExtendAimAssist()
-{
+{       
         AimAssistExtend = true;
         AAEbutton.SetActive(false);
+        gs.NoAimAssist = false;
+        star.color = Color.gray;
 }
-
+public void hidepann()
+{
+    panel.gameObject.SetActive(false);
+}
+public void ShowPan()
+{
+    panel.gameObject.SetActive(true);
+}
 }

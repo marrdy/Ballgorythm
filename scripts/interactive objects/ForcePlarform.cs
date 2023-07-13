@@ -26,6 +26,7 @@ public class ForcePlarform : MonoBehaviour
     public SceneProj sp;
     public PlayerMovement PMVM;
     public CutScene cutScene;
+    public Canvas mainhud;
     public void Clicked3d()
     {
 
@@ -33,7 +34,7 @@ public class ForcePlarform : MonoBehaviour
         SecondCam.LookAt = TransformForcePlat;
         SecondCam.Follow = TransformForcePlat;
         animator.Play("ViewOtherEnt");
-        cutScene.MainHud.SetActive(false);
+        mainhud.gameObject.SetActive(false);
         hidePlats.GetComponent<UImanager>().ActivateControl(false);
     }
     public void setDelay()
@@ -42,7 +43,7 @@ public class ForcePlarform : MonoBehaviour
         Panel.SetActive(false);
         animator.Play("PlayerCam");
         delayValue.text = ExecutionDeley.ToString("0.0");
-        cutScene.MainHud.SetActive(true);
+         mainhud.gameObject.SetActive(true);
         hidePlats.GetComponent<UImanager>().ActivateControl(true);
     }
     public void SliderChangeText()

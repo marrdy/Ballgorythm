@@ -10,12 +10,13 @@ public class TPCmodeScript : MonoBehaviour
     {
         CinemachineCore.GetInputAxis = GetAxisCustom;
         
+        
     }
     public float GetAxisCustom(string axisName)
     {
         if (axisName == "Mouse X")
         {
-            if (Input.GetMouseButton(1))
+            if (Input.GetMouseButton(1) )
             {
                 return UnityEngine.Input.GetAxis("Mouse X");
             }

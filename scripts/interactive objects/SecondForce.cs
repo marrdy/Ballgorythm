@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Cinemachine;
+using UnityEngine.SceneManagement;
+
 public class SecondForce : MonoBehaviour
 {
     public GameObject[] DissappearOnTrigger;
@@ -29,8 +31,13 @@ public class SecondForce : MonoBehaviour
     float xformula;
     float yformula;
     float zformula;
+    public Canvas mainhub;
+    public Vector3 forectoapply;
+    public SceneProj ProjectFP;
+    public GameObject previewsProjPF;
 
-    public GlobalVector gv;
+    public bool ImProjection;
+    
     public void toggleview(bool toggleOnPlayer)
     {
         if (toggleOnPlayer)
@@ -66,19 +73,15 @@ public class SecondForce : MonoBehaviour
             }
 
         }
-        ballcol.GetComponent<Rigidbody>().AddForce(gv.ForcePointVectors * 2);
+      
+            ballcol.GetComponent<Rigidbody>().AddForce(forectoapply*2);
+        
+        
     }
     public void ProjectionSlider()
     {
-        gv.ForcePointVectors = new Vector3(float.Parse(XtextValue.text), float.Parse(YtextValue.text), float.Parse(ZtextValue.text));
-
-
-    }
-    private void Update()
-    {
-
-
-
+        forectoapply = new Vector3(float.Parse(XtextValue.text), float.Parse(YtextValue.text), float.Parse(ZtextValue.text));
+        updateStatProjection();
 
     }
     public void ClickButtonFP()
@@ -89,7 +92,7 @@ public class SecondForce : MonoBehaviour
         thirdCam.LookAt = this.transform;
         thirdCam.Follow = this.transform;
         animator.Play("ViewOtherEnt");
-        FindAnyObjectByType<CutScene>().MainHud.SetActive(false);
+        mainhub.gameObject.SetActive(false);
         //hidePlats.GetComponent<UImanager>().ActivateControl(false);
     }
     public void SetFpValue()
@@ -97,8 +100,8 @@ public class SecondForce : MonoBehaviour
         Panel.SetActive(false);
         looktooglebutton.gameObject.SetActive(false);
         animator.Play("PlayerCam");
-        FindAnyObjectByType<CutScene>().MainHud.SetActive(true);
-        gv.ForcePointVectors = new Vector3(float.Parse(XtextValue.text), float.Parse(YtextValue.text), float.Parse(ZtextValue.text));
+         mainhub.gameObject.SetActive(true);
+        forectoapply = new Vector3(float.Parse(XtextValue.text), float.Parse(YtextValue.text), float.Parse(ZtextValue.text));
         hideButton.GetComponent<UImanager>().ActivateControl(true);
 
     }
@@ -114,6 +117,37 @@ public class SecondForce : MonoBehaviour
         {
             i.SetActive(TrigStat);
         }
+    }
+     public void sliderchanged(string Axis)
+    {
+
+       
+        if (Axis == "x")
+        {
+            xformula = Xslider.value - (Xslider.maxValue / 2);
+            XtextValue.text = xformula.ToString("0.0");
+        }
+        else if (Axis == "y")
+        {
+            yformula = Yslider.value - (Yslider.maxValue / 2);
+            YtextValue.text = yformula.ToString("0.0");
+        }
+        else if (Axis == "z")
+        {
+            zformula = Zslider.value - (Zslider.maxValue / 2);
+            ZtextValue.text = zformula.ToString("0.0");
+        }
+         
+    }
+
+    public void updateStatProjection()
+    {
+        Debug.Log("FP updated");
+       previewsProjPF= ProjectFP.SimulateFP(this,this.transform.position,forectoapply,previewsProjPF);
+    }
+    void Update()
+    {
+       
     }
 }
 

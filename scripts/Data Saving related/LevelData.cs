@@ -7,10 +7,11 @@ using UnityEngine.UI;
 public class LevelData {
 
    public int CurrentLevel;
- 
+    public int[] starsInlevels;
 
     public LevelData(LevelLocker locklev)
     {  
         CurrentLevel = locklev.CurrentLevel;
+        starsInlevels = locklev.starsperlevel;
     }
 }

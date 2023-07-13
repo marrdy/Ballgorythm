@@ -65,7 +65,7 @@ public class AchievementsLoader : MonoBehaviour
     }
     public void LoadAchievements()
     {
-       AchievementAdder LoadedData=  DataSaver.LoadAchievements();
+       AchievementAdder LoadedData=  DataSaver.LoadAchievements(adder);
       
         if (LoadedData.achivecache.Length != 0 && LoadedData !=null)
         {

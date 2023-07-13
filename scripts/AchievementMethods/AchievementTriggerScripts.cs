@@ -6,12 +6,13 @@ public class AchievementTriggerScripts
 {
 
     public static void  AchievementTriggered(int AchievementIndex) 
-    {
+    {   
+
+        AchievementsLoader loader = new AchievementsLoader();
         achiveclass []VarLoaded;
-        AchievementAdder LoadedData = DataSaver.LoadAchievements();
+        AchievementAdder LoadedData = DataSaver.LoadAchievements(loader.adder);
         VarLoaded = LoadedData.achivecache;
         VarLoaded[AchievementIndex].Achived = true;
-        AchievementsLoader loader = new AchievementsLoader();
         loader.adder = VarLoaded;
         DataSaver.AchivementDataSave(loader);
     }

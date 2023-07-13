@@ -12,6 +12,7 @@ public class CinemaCamScript : MonoBehaviour
     public Button ChangeViewButton;
     public CinemachineFreeLook goal;
     public CinemachineFreeLook player;
+    public Canvas mainhud;
     private bool toggleLookGoal = false;
   
     public void toggleview(bool toggleOnPlayer)
@@ -34,11 +35,5 @@ public class CinemaCamScript : MonoBehaviour
         toggleLookGoal = !toggleLookGoal;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-      
-        
-    }
+  
 }

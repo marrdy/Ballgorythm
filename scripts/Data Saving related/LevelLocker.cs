@@ -8,82 +8,52 @@ using System;
 
 public class LevelLocker : MonoBehaviour
 {
-   public Button[] lockLevels;
+    public SCScript GoToLevel;
     public int CurrentLevel;
+    public LevelStat[] lockLevels;
+    public int[] starsperlevel;
     public TMP_Text CurrentLevelLabel;
-   
-    public void LockingTheLevels()
+    private StarManager starManager; // Reference to the StarManager script
+
+    void Start()
     {
-        foreach(Button i in lockLevels)
-        {
-            i.interactable = false;
-        }
-        for (int i =0; i <= lockLevels.Length; i++)
-        {
-
-            
-            if(i<CurrentLevel) {
-                lockLevels[i].interactable = true;
-            }
-        }
-    }
-    private void Start()
-    {
-       
-        try
-        {
-            loadlevels();
-           
-        }
-        catch
-        {
-            resetprog();
-            Debug.Log("No file found, new fresh file has been generated...");
-            loadlevels();
-        }
-       
-            LockingTheLevels();
-        
-       
-
-    }
-    public void resetprog()
-    {
-        CurrentLevel = 1;
-        DataSaver.ProgressData(this);
-        loadlevels();
-        LockingTheLevels();
-
-    }
-    public void save()
-    {
-        
-        DataSaver.ProgressData(this);
-        Debug.Log(CurrentLevel);
-
-    }
-    public void loadlevels()
-    {
-        LevelData data = DataSaver.loadlocklevel();
-        CurrentLevel = data.CurrentLevel;
-        try
-        {
-        CurrentLevelLabel.text = "Current level :"+CurrentLevel.ToString();
-        }
-        catch{
-
-        }
-       
-       
-    }
-   
-
-
-   
-
+        starManager = FindObjectOfType<StarManager>(); // Find the StarManager script in the scene
+        LevelData load = DataSaver.loadlocklevel();
+        CurrentLevel = load.CurrentLevel; 
+        starsperlevel = load.starsInlevels;
+        CurrentLevelLabel.text = "Current level = " + (CurrentLevel+1).ToString();
+        loadLevelButtons();
       
+    }
 
+    public void loadLevelButtons()
+    {
+        for (int i = 0; i < lockLevels.Length; i++)
+        {
+            LevelStat Ilvlstat =  lockLevels[i];
+            int levelIndex = i; // Create a local copy of i
+            Ilvlstat.gameObject.AddComponent<Button>().onClick.AddListener(delegate { GoToLevel.FadeToNextScene(levelIndex + 1); });
+            Ilvlstat.lc.levelnumber = i + 1;
+            Ilvlstat.LevelNumText.text = Ilvlstat.lc.levelnumber.ToString();
+            if (i <= CurrentLevel)
+            {
+                Ilvlstat.LockOrCheck.sprite = lockLevels[i].Complete;
+                    if (i == CurrentLevel)
+                 {
+                Ilvlstat.LockOrCheck.gameObject.SetActive(false);
+                 }
+            }
+           
+            if (i > CurrentLevel)
+            {
+               Ilvlstat.gameObject.GetComponent<Button>().interactable = false;
+               Ilvlstat.LockOrCheck.sprite = lockLevels[i].locker;
+            
+            }
+            Ilvlstat.lc.amountStars = starsperlevel[i] ;
+            Ilvlstat.starslighter(Ilvlstat.lc.amountStars);
+        }
+    }
 
-    
+   
 }
- 

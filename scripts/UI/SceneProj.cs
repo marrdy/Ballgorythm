@@ -5,14 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class SceneProj : MonoBehaviour
 {
-    private Scene SceneProjector;
+    public Scene SceneProjector;
     public PhysicsScene PS;
 
     [SerializeField] private Transform ObjectsInProjection;
    
     [SerializeField] private LineRenderer _line;
   
-    [SerializeField] private int _maxPhysicsFrameIterations = 500;
+    [SerializeField] public int _maxPhysicsFrameIterations = 50;
+    
  
     private readonly Dictionary<Transform, Transform> _spawnedObjects = new Dictionary<Transform, Transform>();
     void Start()
@@ -47,36 +48,50 @@ public class SceneProj : MonoBehaviour
     {
         var ghostObj = Instantiate(player, pos, Quaternion.identity) ;
         SceneManager.MoveGameObjectToScene(ghostObj.gameObject, SceneProjector);
-        ghostObj.name = "Simulation";
+        ghostObj.name = "SimulationBall";
         //ghostObj.initpush(velocity);
         ghostObj.rb.AddForce(velocity);
       
         _line.positionCount = _maxPhysicsFrameIterations;
         _line.gameObject.layer = 7;
         for (var i = 0; i < _maxPhysicsFrameIterations; i++)
-        {
+        {       
             _line.SetPosition(i, ghostObj.transform.position);
-           
-           
-            
             if (player.AimAssistExtend)
             {
-                PS.Simulate(Time.fixedDeltaTime);
-                PS.Simulate(Time.fixedDeltaTime);
-                PS.Simulate(Time.fixedDeltaTime);
-                PS.Simulate(Time.fixedDeltaTime);
-                PS.Simulate(Time.fixedDeltaTime);
+
+                int linegap = 0;
+                while(linegap <= 10)
+                {
+                    PS.Simulate(Time.fixedDeltaTime);
+                    linegap++;
+                }
+                
+               
             }
             else
             {
                 PS.Simulate(Time.fixedDeltaTime);
+                PS.Simulate(Time.fixedDeltaTime);
             }
-           
-
         }
-
         Destroy(ghostObj.gameObject);
     }
    
-
+public GameObject SimulateFP(SecondForce FP, Vector3 pos, Vector3 FPvalue,GameObject previewsProj)
+    {
+        try
+        {
+            Destroy(previewsProj);
+        }
+        catch
+        {
+        }
+        var ghostObj = Instantiate(FP, pos, Quaternion.identity) ;
+        SceneManager.MoveGameObjectToScene(ghostObj.gameObject, SceneProjector);
+        ghostObj.name = "FPprojection";
+        ghostObj.ImProjection =true;
+          
+        return ghostObj.gameObject;
+    }
 }
