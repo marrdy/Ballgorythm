@@ -3994,7 +3994,7 @@ GameObject:
   - component: {fileID: 8295614787539995024}
   - component: {fileID: 6616648692253146351}
   m_Layer: 5
-  m_Name: BarX
+  m_Name: BarXfp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4121,7 +4121,7 @@ GameObject:
   - component: {fileID: 5798232112849903063}
   - component: {fileID: 8868919718413899535}
   m_Layer: 5
-  m_Name: BarY
+  m_Name: BarYfp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4248,7 +4248,7 @@ GameObject:
   - component: {fileID: 6695610695513493784}
   - component: {fileID: 1552369667823070851}
   m_Layer: 5
-  m_Name: BarZ
+  m_Name: BarZfp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5305,3 +5305,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectToFollow: {fileID: 4139264832229046292}
+  margin: 0
