@@ -59,15 +59,13 @@ public class SceneProj : MonoBehaviour
             _line.SetPosition(i, ghostObj.transform.position);
             if (player.AimAssistExtend)
             {
-
+                
                 int linegap = 0;
                 while(linegap <= 10)
                 {
                     PS.Simulate(Time.fixedDeltaTime);
                     linegap++;
                 }
-                
-               
             }
             else
             {

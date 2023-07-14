@@ -1253,6 +1253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectToFollow: {fileID: 7151607676617697521}
+  margin: 0
 --- !u!1 &724470442998610634
 GameObject:
   m_ObjectHideFlags: 0
@@ -3163,19 +3164,28 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.84183794
-        value: 1
-        inSlope: 3.4102035
-        outSlope: 3.4102035
+        time: 0.705226
+        value: 0.93055725
+        inSlope: Infinity
+        outSlope: Infinity
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.08846062
+        inWeight: 0
         outWeight: 0.10475977
       - serializedVersion: 3
+        time: 0.73223877
+        value: 0.8579025
+        inSlope: 0.50507313
+        outSlope: 0.50507313
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.6162616
+        outWeight: 0
+      - serializedVersion: 3
         time: 1
-        value: 0.038459778
-        inSlope: 0.058429655
-        outSlope: 0.058429655
+        value: 0
+        inSlope: -0.618243
+        outSlope: -0.618243
         tangentMode: 0
         weightedMode: 0
         inWeight: 1
