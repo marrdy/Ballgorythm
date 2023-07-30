@@ -573,10 +573,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Achivementes
+  m_text: Achievements
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 34d21277a4f3e14428606891d8d194ac, type: 2}
+  m_sharedMaterial: {fileID: -3148373180113634782, guid: 34d21277a4f3e14428606891d8d194ac, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -600,10 +600,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -1566,7 +1566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2448852235503107583, guid: fb1e1a3a822caea41a58ab8dd9a13cc7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 121.66511
+      value: 120.08791
       objectReference: {fileID: 0}
     - target: {fileID: 2448852235503107583, guid: fb1e1a3a822caea41a58ab8dd9a13cc7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using playerscript;
 public class SceneProj : MonoBehaviour
 {
     public Scene SceneProjector;
@@ -22,6 +22,7 @@ public class SceneProj : MonoBehaviour
         CreateProjection();
        
     }
+    
     void CreateProjection()
     {
         SceneProjector = SceneManager.CreateScene("Simulation", new CreateSceneParameters(LocalPhysicsMode.Physics3D));
@@ -51,28 +52,24 @@ public class SceneProj : MonoBehaviour
         ghostObj.name = "SimulationBall";
         //ghostObj.initpush(velocity);
         ghostObj.rb.AddForce(velocity);
-      
+        Vector3[] lineforms = new Vector3[_maxPhysicsFrameIterations];
         _line.positionCount = _maxPhysicsFrameIterations;
         _line.gameObject.layer = 7;
+        _line.enabled =false;
         for (var i = 0; i < _maxPhysicsFrameIterations; i++)
         {       
-            _line.SetPosition(i, ghostObj.transform.position);
-            if (player.AimAssistExtend)
-            {
-                
+            lineforms[i] = ghostObj.transform.position;
+       
                 int linegap = 0;
                 while(linegap <= 10)
                 {
                     PS.Simulate(Time.fixedDeltaTime);
                     linegap++;
                 }
-            }
-            else
-            {
-                PS.Simulate(Time.fixedDeltaTime);
-                PS.Simulate(Time.fixedDeltaTime);
-            }
+         
         }
+        _line.enabled =true;
+             _line.SetPositions(lineforms);
         Destroy(ghostObj.gameObject);
     }
    
@@ -86,10 +83,12 @@ public GameObject SimulateFP(SecondForce FP, Vector3 pos, Vector3 FPvalue,GameOb
         {
         }
         var ghostObj = Instantiate(FP, pos, Quaternion.identity) ;
+        ghostObj.used = false;
+        ghostObj.forectoapply = FPvalue;
         SceneManager.MoveGameObjectToScene(ghostObj.gameObject, SceneProjector);
         ghostObj.name = "FPprojection";
         ghostObj.ImProjection =true;
-          
+      
         return ghostObj.gameObject;
     }
 }

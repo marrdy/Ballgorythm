@@ -34,6 +34,35 @@ public class SCScript : MonoBehaviour
         animator.SetTrigger("FadeOut");
     }
 
+    
+    public void aboutus()
+    {
+        
+        SceneNumber = SceneManager.sceneCountInBuildSettings-5;
+     
+        animator.SetTrigger("FadeOut");
+    }
+    public void manual()
+    {
+        
+        SceneNumber = SceneManager.sceneCountInBuildSettings-4;
+     
+        animator.SetTrigger("FadeOut");
+    }
+   
+public void Settings()
+    {
+
+        SceneNumber = SceneManager.sceneCountInBuildSettings - 3;
+        animator.SetTrigger("FadeOut");
+    }
+ public void achievement()
+    {
+
+        SceneNumber = SceneManager.sceneCountInBuildSettings - 2;
+        animator.SetTrigger("FadeOut");
+    }
+
     public void levelselection()
     {
         
@@ -41,19 +70,6 @@ public class SCScript : MonoBehaviour
      
         animator.SetTrigger("FadeOut");
     }
-    public void achievement()
-    {
-
-        SceneNumber = SceneManager.sceneCountInBuildSettings - 2;
-        animator.SetTrigger("FadeOut");
-    }
-public void Settings()
-    {
-
-        SceneNumber = SceneManager.sceneCountInBuildSettings - 3;
-        animator.SetTrigger("FadeOut");
-    }
-
     public void FadeToNextLevel()
     {
         SceneNumber = SceneManager.GetActiveScene().buildIndex+1;

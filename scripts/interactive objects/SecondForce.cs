@@ -5,7 +5,8 @@ using UnityEngine.UI;
 using TMPro;
 using Cinemachine;
 using UnityEngine.SceneManagement;
-
+namespace playerscript
+{
 public class SecondForce : MonoBehaviour
 {
     public GameObject DissappearOnTrigger;
@@ -37,7 +38,10 @@ public class SecondForce : MonoBehaviour
     public GameObject previewsProjPF;
     public LineRenderer TPobjpointer;
     public bool ImProjection;
-    
+
+        private Vector3 previousSimulationForce;
+    [HideInInspector]
+    public bool used;
     public void toggleview(bool toggleOnPlayer)
     {
         if (toggleOnPlayer)
@@ -51,59 +55,97 @@ public class SecondForce : MonoBehaviour
             animator.Play("GoalCam");
         }
     }
+    private void Update()
+    {
+       
+        Vector3 currentSimulationForce = new Vector3(float.Parse(XtextValue.text), float.Parse(XtextValue.text), float.Parse(XtextValue.text));
+    if (PMVM.notyetpushed && currentSimulationForce !=  previousSimulationForce&&  PMVM.AimAssistExtend)
+    {
+       
+        PMVM._projection.SimulateTrajectory(PMVM, PMVM.startpos, PMVM.APforce * 2);
+        previousSimulationForce = currentSimulationForce;
+    }
 
+    }
     public void toggleButton()
     {
         toggleview(toggleLookGoal);
         toggleLookGoal = !toggleLookGoal;
     }
-
     void OnTriggerEnter(Collider other)
     {
         ballcol = other;
-
-
+        
+        if(!used)
+        {
+            Vector3 lastvelo = ballcol.GetComponent<Rigidbody>().velocity;
+            ballcol.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
         if (BlueForcePoint)
         {
-            ballcol.GetComponent<Rigidbody>().isKinematic = true;
-            ballcol.GetComponent<Rigidbody>().isKinematic = false;
+            
             if (other.name == "Player")
             {
-                TriggerBFP(false);
+                 FindAnyObjectByType<SMScript>().playtrack("triggered");
+              
+               TriggerBFP(false);
             }
-
         }
-      
+        else
+        {
+             ballcol.GetComponent<Rigidbody>().velocity = lastvelo;
+        }
             ballcol.GetComponent<Rigidbody>().AddForce(forectoapply*2);
+            if(other.name == "Player")
+            {
+                FindAnyObjectByType<SMScript>().playtrack("FPbell");
+                StartCoroutine("enableAgain");
+            }
+          
         
-        
+        }
+
     }
+   IEnumerator enableAgain()
+   {
+   
+     used=true;
+  
+    yield return new WaitForSecondsRealtime(0.05f);
+      
+    used=false;
+    
+   }
+    
     public void ProjectionSlider()
     {
         forectoapply = new Vector3(float.Parse(XtextValue.text), float.Parse(YtextValue.text), float.Parse(ZtextValue.text));
         updateStatProjection();
+        FindAnyObjectByType<PlayerMovement>().sliderchanged("");
 
     }
     public void ClickButtonFP()
     {   if(BlueForcePoint)
     {
-        DissappearOnTrigger.SetActive(!DissappearOnTrigger.activeSelf);
+        TriggerBFP(false);
     }
         
-        hideButton.GetComponent<UImanager>().ActivateControl(false);
+        if(FindAnyObjectByType<SCScript>().mainhud.gameObject.activeSelf)
+        {
         looktooglebutton.gameObject.SetActive(true);
         Panel.SetActive(true);
         thirdCam.LookAt = this.transform;
         thirdCam.Follow = this.transform;
         animator.Play("ViewOtherEnt");
         mainhub.gameObject.SetActive(false);
+        }
+       
         //hidePlats.GetComponent<UImanager>().ActivateControl(false);
     }
     public void SetFpValue()
     {
         if(BlueForcePoint)
     {
-        DissappearOnTrigger.SetActive(!DissappearOnTrigger.activeSelf);
+        TriggerBFP(true);
     }
         Panel.SetActive(false);
         looktooglebutton.gameObject.SetActive(false);
@@ -124,6 +166,10 @@ public class SecondForce : MonoBehaviour
        
           DissappearOnTrigger.SetActive(TrigStat);
        
+    }
+    public void DOTcollide()
+    {
+        DissappearOnTrigger.SetActive(!DissappearOnTrigger.activeSelf);
     }
      public void sliderchanged(string Axis)
     {
@@ -166,6 +212,10 @@ public class SecondForce : MonoBehaviour
     {
         TPobjpointer.enabled =false;
     }
+    ProjectionSlider();
+    
   }
 }
 
+
+}

@@ -9,6 +9,7 @@ public class TutorialDialogs : MonoBehaviour
     
     public SetOfDialogs[] sod;
     int IndexDialog =0;
+
     void Start()
     {
        StartCoroutine("FirstMessage");
@@ -22,6 +23,7 @@ public class TutorialDialogs : MonoBehaviour
     
     public void ShowDialog(int index)
     {   
+      
       sod[index].dcc.gameObject.SetActive(true);
       sod[index].dcc.dclass.dialogtext.text = sod[index].text;
       foreach(GameObject go in sod[index].controlToenable)
@@ -33,7 +35,7 @@ public class TutorialDialogs : MonoBehaviour
       if( sod[index].LocalTrigger)
       {
         sod[index].dcc.dclass.DialogLocalTrigger.SetActive(true);
-     sod[index].dcc.dclass.DialogLocalTrigger.AddComponent<Button>().onClick.AddListener(delegate{nexdialog( sod[index].dcc.dclass.DialogLocalTrigger.GetComponent<Button>(),index);});
+     sod[index].dcc.dclass.DialogLocalTrigger.AddComponent<Button>().onClick.AddListener(delegate{ nexdialog( sod[index].dcc.dclass.DialogLocalTrigger.GetComponent<Button>(),index);});
 
       
     }
@@ -73,15 +75,24 @@ public class TutorialDialogs : MonoBehaviour
       {
         sod[IndexDialog].dcc.gameObject.SetActive(false);
         IndexDialog++;
-        listrem.onClick.RemoveListener(delegate{nexdialog(sod[index].NextDialogTrigger.GetComponent<Button>(),index);});
+       // listrem.onClick.RemoveListener(delegate{nexdialog(sod[index].NextDialogTrigger.GetComponent<Button>(),index);});
         ShowDialog(IndexDialog);
       }
         
     }
 
-  public void SliderSingleCall(Slider slider, float triggerpoint, int index)
+    public void prevdialog()
     {
       
+        sod[IndexDialog].dcc.gameObject.SetActive(false);
+        IndexDialog--;
+       ShowDialog(IndexDialog);
+      
+        
+    }
+
+  public void SliderSingleCall(Slider slider, float triggerpoint, int index)
+    {
         if(slider.value-(slider.maxValue/2) ==triggerpoint&& IndexDialog == index)
         {
         sod[IndexDialog].dcc.gameObject.SetActive(false);
@@ -97,8 +108,8 @@ public class TutorialDialogs : MonoBehaviour
       [SerializeField] public DialogContentClass dcc;
       [TextArea(3, 10)]   public string text;
         
-         public GameObject[] controlToenable;
-          public bool LocalTrigger = true;
+        public GameObject[] controlToenable;
+        public bool LocalTrigger = true;
         public GameObject NextDialogTrigger;
         public float SliderValueTrigger;
     }

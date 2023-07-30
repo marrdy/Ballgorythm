@@ -2,8 +2,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
-
+using System.Collections;
+using System;
+namespace playerscript{
 public class PlayerMovement : MonoBehaviour
 {
     public Vector3 APforce;
@@ -34,29 +35,43 @@ public class PlayerMovement : MonoBehaviour
     public GameObject AAEbutton;
     public timerPush timercounter;
     public Goalscript gs;
-    [SerializeField] private SceneProj _projection;
+    [SerializeField] public SceneProj _projection;
+
 
 
     float SlowExecution;
     private void Update()
     {
        
-            if (notyetpushed)
-            {
-                Vector3 simulationforce = new Vector3(float.Parse(xvalue.text), float.Parse(yvalue.text), float.Parse(zvalue.text));
-                _projection.SimulateTrajectory(this, startpos, simulationforce * 2);
-            }
-      
-
+        Vector3 currentSimulationForce = new Vector3(float.Parse(xvalue.text), float.Parse(yvalue.text), float.Parse(zvalue.text));
+    if (notyetpushed && currentSimulationForce != APforce && AimAssistExtend)
+    {
+        _projection.SimulateTrajectory(this, startpos, currentSimulationForce * 2);
+        APforce = currentSimulationForce;
+    }
 
     }
+
+    IEnumerator linesimulate()
+{
+    yield return new WaitForSeconds(0.2f);
+
+     
+    yield return null;
+}
+    private static SecondForce[] FT;
+
     void Start()
     {
         startpos = playerpos.position;
 
-
+        
     }
 
+    
+       
+
+    
 
 
     public void sliderchanged(string Axis)
@@ -99,6 +114,7 @@ public class PlayerMovement : MonoBehaviour
             ShowEntToggle.SetActive(false);
             uimanager.ActivateControl(false);
             APforce = new Vector3(float.Parse(xvalue.text), float.Parse(yvalue.text), float.Parse(zvalue.text));
+            FindAnyObjectByType<SMScript>().playtrack("Push");
             initpush(APforce * 2);
             ptext.text = "Retry";
             notyetpushed = false;
@@ -131,6 +147,12 @@ public class PlayerMovement : MonoBehaviour
         cldplayer.isTrigger = false;
         ptext.text = "Push";
         trail.Clear();
+          SecondForce[] secondForceScripts = FindObjectsOfType<SecondForce>();
+            foreach (SecondForce secondForce in secondForceScripts)
+            {
+                // Call TriggerBFP(false) on each object with the "SecondForce" script
+                secondForce.TriggerBFP(true);
+            }
     }
 
 
@@ -159,5 +181,6 @@ public void hidepann()
 public void ShowPan()
 {
     panel.gameObject.SetActive(true);
+}
 }
 }

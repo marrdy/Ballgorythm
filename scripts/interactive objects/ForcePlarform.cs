@@ -1,10 +1,10 @@
-
+  
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Cinemachine;
 using System.Collections;
-
+using playerscript;
 public class ForcePlarform : MonoBehaviour
 {
 

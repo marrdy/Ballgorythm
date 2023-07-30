@@ -47,7 +47,31 @@ MonoBehaviour:
   SoundTracks:
   - name: Theme
     clip: {fileID: 8300000, guid: 916ad04f25ca15b438513dd6f83811ff, type: 3}
-    volume: 1
+    volume: 0.484
     pitch: 1
     source: {fileID: 0}
     loop: 1
+  - name: Push
+    clip: {fileID: 8300000, guid: 8111bee8114d27b43860b8f2bddc58ab, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: goal
+    clip: {fileID: 8300000, guid: cab6b71ef1bba514fbf5cb8f2cdea57c, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: FPbell
+    clip: {fileID: 8300000, guid: 29dc442fd925d7c4c96eb519fa9c14ca, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: triggered
+    clip: {fileID: 8300000, guid: d49bde0688a0f3b43adee4bdd9a0f85a, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0

@@ -9,16 +9,26 @@ public class UImanager : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject[] Controls;
+    
+   private static WaypointerIcon[] icons;
     public TMP_Text StateText;
     bool ShowOrHide = true;
+    void Start()
+    {
+        icons = (WaypointerIcon[]) GameObject.FindObjectsOfType (typeof(WaypointerIcon));
+        ActivateControl(false);
+    }
     public void ActivateControl(bool state)
     {
         try
         {
-            foreach (GameObject i in Controls)
+            foreach (WaypointerIcon i in icons)
             {
-                i.SetActive(state);
-
+                if(i.gameObject.name == "Framefp")
+                {
+                i.gameObject.SetActive(state);
+                }
+               
             }
         }
        

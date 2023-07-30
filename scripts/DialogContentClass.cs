@@ -26,6 +26,7 @@ public class dialogclass
   
     public TMP_Text dialogtext;
      public GameObject DialogLocalTrigger;
+     
 
 }
 

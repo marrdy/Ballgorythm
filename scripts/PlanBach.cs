@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using playerscript;
 public class PlanBach : MonoBehaviour
 {
    public GameObject dialog;

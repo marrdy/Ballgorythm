@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using TMPro;
-
+using playerscript;
 public class Goalscript : MonoBehaviour
 {
     public Animator animator;
@@ -50,7 +50,7 @@ public class Goalscript : MonoBehaviour
         LevelUpEvent.levelUp();
         mainhud.gameObject.SetActive(false);
         compasshud.gameObject.SetActive(false);
-
+          FindAnyObjectByType<SMScript>().playtrack("goal");
         if (!endPanelShown)
         {
             StartCoroutine("ShowEndPannel");
