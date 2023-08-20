@@ -38,7 +38,7 @@ public class SecondForce : MonoBehaviour
     public GameObject previewsProjPF;
     public LineRenderer TPobjpointer;
     public bool ImProjection;
-
+    public Transform arrow;
         private Vector3 previousSimulationForce;
     [HideInInspector]
     public bool used;
@@ -62,7 +62,7 @@ public class SecondForce : MonoBehaviour
     if (PMVM.notyetpushed && currentSimulationForce !=  previousSimulationForce&&  PMVM.AimAssistExtend)
     {
        
-        PMVM._projection.SimulateTrajectory(PMVM, PMVM.startpos, PMVM.APforce * 2);
+        PMVM._projection.SimulateTrajectory(PMVM, PMVM.startpos, PMVM.APforce);
         previousSimulationForce = currentSimulationForce;
     }
 
@@ -94,7 +94,7 @@ public class SecondForce : MonoBehaviour
         {
              ballcol.GetComponent<Rigidbody>().velocity = lastvelo;
         }
-            ballcol.GetComponent<Rigidbody>().AddForce(forectoapply*2);
+            ballcol.GetComponent<Rigidbody>().AddForce(forectoapply);
             if(other.name == "Player")
             {
                 FindAnyObjectByType<SMScript>().playtrack("FPbell");
@@ -157,9 +157,9 @@ public class SecondForce : MonoBehaviour
     }
     public void VectorReset()
     {
-        Xslider.value = 1000;
-        Yslider.value = 1000;
-        Zslider.value = 1000;
+        Xslider.value = 0;
+        Yslider.value = 0;
+        Zslider.value = 0;
     }
     public void TriggerBFP(bool TrigStat)
     {
@@ -174,23 +174,25 @@ public class SecondForce : MonoBehaviour
      public void sliderchanged(string Axis)
     {
 
-       
-        if (Axis == "x")
+         XtextValue.text = Xslider.value.ToString("0.0");
+        YtextValue.text = Yslider.value.ToString("0.0");
+        ZtextValue.text = Zslider.value.ToString("0.0");
+        Vector3 force = new Vector3(Xslider.value, Yslider.value, Zslider.value);
+        if(force == Vector3.zero)
         {
-            xformula = Xslider.value - (Xslider.maxValue / 2);
-            XtextValue.text = xformula.ToString("0.0");
+            arrow.gameObject.SetActive(false);
         }
-        else if (Axis == "y")
+        else
         {
-            yformula = Yslider.value - (Yslider.maxValue / 2);
-            YtextValue.text = yformula.ToString("0.0");
+            arrow.gameObject.SetActive(true);
         }
-        else if (Axis == "z")
-        {
-            zformula = Zslider.value - (Zslider.maxValue / 2);
-            ZtextValue.text = zformula.ToString("0.0");
-        }
-         
+
+        float angleArrow = Mathf.Acos(Vector3.Dot(new Vector3(0, 1, 0), force) / force.magnitude);
+        Vector3 axisArrowRot = Vector3.Cross(new Vector3(0, 1, 0), force);
+       // arrow.transform.rotation = Quaternion.identity * Quaternion.LookRotation(axisArrowRot * angleArrow);
+
+            
+            arrow.transform.rotation = Quaternion.identity * Quaternion.LookRotation(force, axisArrowRot * angleArrow);
     }
 
     public void updateStatProjection()

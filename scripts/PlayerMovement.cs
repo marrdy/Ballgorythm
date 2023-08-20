@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject AAEbutton;
     public timerPush timercounter;
     public Goalscript gs;
+    
     [SerializeField] public SceneProj _projection;
 
 
@@ -46,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 currentSimulationForce = new Vector3(float.Parse(xvalue.text), float.Parse(yvalue.text), float.Parse(zvalue.text));
     if (notyetpushed && currentSimulationForce != APforce && AimAssistExtend)
     {
-        _projection.SimulateTrajectory(this, startpos, currentSimulationForce * 2);
+        _projection.SimulateTrajectory(this, startpos, currentSimulationForce);
         APforce = currentSimulationForce;
     }
 
@@ -78,21 +79,10 @@ public class PlayerMovement : MonoBehaviour
     {
 
 
-        if (Axis == "x")
-        {
-            xformula = xslider.value - (xslider.maxValue / 2);
-            xvalue.text = xformula.ToString("0.0");
-        }
-        else if (Axis == "y")
-        {
-            yformula = yslider.value - (yslider.maxValue / 2);
-            yvalue.text = yformula.ToString("0.0");
-        }
-        else if (Axis == "z")
-        {
-            zformula = zslider.value - (zslider.maxValue / 2);
-            zvalue.text = zformula.ToString("0.0");
-        }
+            xvalue.text = xslider.value.ToString("0.0");
+            yvalue.text = yslider.value.ToString("0.0");
+            zvalue.text = zslider.value.ToString("0.0");
+        
 
 
 
@@ -107,15 +97,15 @@ public class PlayerMovement : MonoBehaviour
         timercounter.counting = true;
         if (notyetpushed) {
 
-            xformula = xslider.value - (xslider.maxValue / 2);
-            yformula = yslider.value - (yslider.maxValue / 2);
-            zformula = zslider.value - (zslider.maxValue / 2);
+                xformula = xslider.value;
+                yformula = yslider.value;
+                zformula = zslider.value;
             ActiveSinceFirstPlace = ShowEntToggle.activeSelf;
             ShowEntToggle.SetActive(false);
             uimanager.ActivateControl(false);
             APforce = new Vector3(float.Parse(xvalue.text), float.Parse(yvalue.text), float.Parse(zvalue.text));
             FindAnyObjectByType<SMScript>().playtrack("Push");
-            initpush(APforce * 2);
+            initpush(APforce);
             ptext.text = "Retry";
             notyetpushed = false;
             this.GetComponent<LineRenderer>().enabled = false;
@@ -158,9 +148,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void VectorReset()
     {
-        xslider.value = 1000;
-        yslider.value = 1000;
-        zslider.value = 1000;
+        xslider.value = 0;
+        yslider.value = 0;
+        zslider.value = 0;
         xvalue.text = 0.ToString();
         yvalue.text = 0.ToString();
         zvalue.text = 0.ToString();

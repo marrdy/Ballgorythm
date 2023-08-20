@@ -93,7 +93,7 @@ public class TutorialDialogs : MonoBehaviour
 
   public void SliderSingleCall(Slider slider, float triggerpoint, int index)
     {
-        if(slider.value-(slider.maxValue/2) ==triggerpoint&& IndexDialog == index)
+        if(slider.value ==triggerpoint&& IndexDialog == index)
         {
         sod[IndexDialog].dcc.gameObject.SetActive(false);
         IndexDialog++;

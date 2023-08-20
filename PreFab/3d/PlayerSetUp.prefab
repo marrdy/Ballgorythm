@@ -457,12 +457,12 @@ MonoBehaviour:
   m_BindingMode: 4
   m_SplineCurvature: 0.054
   m_Orbits:
-  - m_Height: 38.2
-    m_Radius: 1.75
-  - m_Height: 19
-    m_Radius: 81.5
-  - m_Height: 4
-    m_Radius: 2.44
+  - m_Height: 16.36
+    m_Radius: 2.04
+  - m_Height: 3.27
+    m_Radius: 14.12
+  - m_Height: 0
+    m_Radius: 0
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 4304390641111897996}
@@ -1264,8 +1264,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13554bbad69b2e04e83a89dac294e133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectToFollow: {fileID: 7151607676617697521}
-  margin: 0
+  maincam: {fileID: 1110835716120502260}
+  objToFollow: {fileID: 4578183966632631215}
 --- !u!1 &724470442998610634
 GameObject:
   m_ObjectHideFlags: 0
@@ -1621,10 +1621,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 5953289661275208176}
   m_HandleRect: {fileID: 5402989418072068828}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 2000
+  m_MinValue: -1000
+  m_MaxValue: 1000
   m_WholeNumbers: 1
-  m_Value: 1000
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1775,7 +1775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 19, z: -50}
+  m_FollowOffset: {x: 0, y: 4.8, z: -7.3}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -2873,7 +2873,7 @@ GameObject:
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2884,9 +2884,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1720214192497885746}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -29.3, y: 348.4, z: 594.8}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 605712966711125285}
@@ -2963,7 +2963,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1720214192497885746}
   serializedVersion: 2
-  m_Mass: 0.5
+  m_Mass: 1.5
   m_Drag: 0
   m_AngularDrag: 0.4
   m_UseGravity: 1
@@ -3053,7 +3053,7 @@ TrailRenderer:
   m_Time: 2
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 20
+    widthMultiplier: 3
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -3157,9 +3157,7 @@ LineRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  m_Positions: []
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 2
@@ -3329,7 +3327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 18.055897, z: -81.19542}
+  m_FollowOffset: {x: 0, y: 3.27, z: -14.12}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -3349,7 +3347,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: -112.16791
+    Value: -267.8
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -4283,7 +4281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 19, z: -50}
+  m_FollowOffset: {x: 0, y: 4.8, z: -7.3}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -4422,7 +4420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 18.055897, z: -81.19542}
+  m_FollowOffset: {x: 0, y: 3.27, z: -14.12}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -4442,7 +4440,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: -112.16791
+    Value: -267.8
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -4574,10 +4572,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 3792526807853883935}
   m_HandleRect: {fileID: 5436406068599759002}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 2000
+  m_MinValue: -1000
+  m_MaxValue: 1000
   m_WholeNumbers: 1
-  m_Value: 1000
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -4652,7 +4650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 19, z: -50}
+  m_FollowOffset: {x: 0, y: 4.8, z: -7.3}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -4796,6 +4794,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2899732093455145938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9182981012518333656}
+  m_Layer: 0
+  m_Name: Obstacle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9182981012518333656
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2899732093455145938}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 605712966711125285}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2976372665088127506
 GameObject:
   m_ObjectHideFlags: 0
@@ -7250,12 +7279,12 @@ MonoBehaviour:
   m_BindingMode: 5
   m_SplineCurvature: 0.2
   m_Orbits:
-  - m_Height: 97
-    m_Radius: 10.52
-  - m_Height: 46.44
-    m_Radius: 74.5
-  - m_Height: 1.9
-    m_Radius: 11.6
+  - m_Height: 19
+    m_Radius: 2
+  - m_Height: 4
+    m_Radius: 7
+  - m_Height: 4
+    m_Radius: 2
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 393731070237336510}
@@ -9407,7 +9436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 18.055897, z: -81.19542}
+  m_FollowOffset: {x: 0, y: 3.27, z: -14.12}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -9427,7 +9456,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: -112.16791
+    Value: -267.8
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -10802,10 +10831,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 7256692663983874410}
   m_HandleRect: {fileID: 4972647210296215200}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 2000
+  m_MinValue: -1000
+  m_MaxValue: 1000
   m_WholeNumbers: 1
-  m_Value: 1000
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -11713,6 +11742,7 @@ Transform:
   - {fileID: 1389685697045812757}
   - {fileID: 976659148506270754}
   - {fileID: 1453281056680652455}
+  - {fileID: 9182981012518333656}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11921,10 +11951,7 @@ MonoBehaviour:
   m_AnimatedTarget: {fileID: 6481940646868461807}
   m_LayerIndex: 0
   m_ShowDebugText: 0
-  m_ChildCameras:
-  - {fileID: 5750657785497938527}
-  - {fileID: 1547718722603925556}
-  - {fileID: 2279853433489414994}
+  m_ChildCameras: []
   m_Instructions:
   - m_FullHash: -500209570
     m_VirtualCamera: {fileID: 5750657785497938527}
@@ -11998,7 +12025,7 @@ GameObject:
   m_Layer: 0
   m_Name: Finish
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -12009,9 +12036,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7294027824549467652}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.2, y: 345.77, z: 596}
-  m_LocalScale: {x: 1.7336, y: 1.7336, z: 1.7336}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.01, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.4, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4578183966632631215}
@@ -13351,7 +13378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SceneProjector:
     m_Handle: 0
-  ObjectsInProjection: {fileID: 0}
+  ObjectsInProjection: {fileID: 9182981012518333656}
   _line: {fileID: 7810866007192834242}
   _maxPhysicsFrameIterations: 40
 --- !u!1 &8385600811329602810
@@ -13998,8 +14025,8 @@ MonoBehaviour:
   m_Orbits:
   - m_Height: 19.9
     m_Radius: 1.75
-  - m_Height: 19
-    m_Radius: 50
+  - m_Height: 4.8
+    m_Radius: 7.3
   - m_Height: 4
     m_Radius: 2.44
   m_LegacyHeadingBias: 3.4028235e+38
@@ -14364,6 +14391,38 @@ PrefabInstance:
     - target: {fileID: 1535617620497093992, guid: b2f2d14985712274d8786dcd1436b97f, type: 3}
       propertyPath: m_Name
       value: SoundManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535617620497093993, guid: b2f2d14985712274d8786dcd1436b97f, type: 3}
+      propertyPath: SoundTracks.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535617620497093993, guid: b2f2d14985712274d8786dcd1436b97f, type: 3}
+      propertyPath: SoundTracks.Array.data[3].name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535617620497093993, guid: b2f2d14985712274d8786dcd1436b97f, type: 3}
+      propertyPath: SoundTracks.Array.data[4].clip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535617620497093993, guid: b2f2d14985712274d8786dcd1436b97f, type: 3}
+      propertyPath: SoundTracks.Array.data[4].name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535617620497093993, guid: b2f2d14985712274d8786dcd1436b97f, type: 3}
+      propertyPath: SoundTracks.Array.data[3].pitch
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535617620497093993, guid: b2f2d14985712274d8786dcd1436b97f, type: 3}
+      propertyPath: SoundTracks.Array.data[4].pitch
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535617620497093993, guid: b2f2d14985712274d8786dcd1436b97f, type: 3}
+      propertyPath: SoundTracks.Array.data[3].volume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535617620497093993, guid: b2f2d14985712274d8786dcd1436b97f, type: 3}
+      propertyPath: SoundTracks.Array.data[4].volume
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1535617620497093994, guid: b2f2d14985712274d8786dcd1436b97f, type: 3}
       propertyPath: m_RootOrder

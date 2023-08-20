@@ -1,42 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
+using playerscript;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class WaypointerIcon : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public Transform ObjectToFollow;
-    public float margin;
-    void Update()
+    public Transform target; // The object you want to follow
+    public RectTransform canvasRect; // Reference to the Canvas RectTransform
+
+    private RectTransform rectTransform;
+
+    private void Start()
     {
-        float minx = this.GetComponent<Image>().GetPixelAdjustedRect().width+200/2;
-        float maxx = Screen.width-minx-200;
+        rectTransform = GetComponent<RectTransform>();
+    }
 
-        float miny = this.GetComponent<Image>().GetPixelAdjustedRect().height +100/ 2;
-        float maxy = Screen.height - miny -100;
-
-
-        Vector2 pos = Camera.main.WorldToScreenPoint(ObjectToFollow.position);
-        if (Vector3.Dot((ObjectToFollow.position - transform.position),transform.forward)<0)
+    private void Update()
+    {
+        if (target != null)
         {
-            if (pos.x<Screen.width/2)
+            // Convert world position to screen space
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(target.position);
+
+            // Check if the object is off-screen
+            if (!IsInScreen(screenPos))
             {
-                pos.x = maxx;
+                // If off-screen, clamp it to the screen bounds
+                screenPos.x = Mathf.Clamp(screenPos.x, 0, canvasRect.rect.width);
+                screenPos.y = Mathf.Clamp(screenPos.y, 0, canvasRect.rect.height);
+
+                // Set the UI element's position
+                rectTransform.position = screenPos;
             }
+            else
             {
-                pos.x = minx;
-            }
-            if (pos.y<Screen.height/2)
-            {
-                pos.y = maxy;
-            }
-            {
-                pos.y = miny;
+                // If on-screen, set the UI element's position directly
+                rectTransform.position = screenPos;
             }
         }
-        pos.x = Mathf.Clamp(pos.x,minx, maxx);
-        pos.y = Mathf.Clamp(pos.y,miny, maxy);
-        transform.position = pos;
     }
+
+    private bool IsInScreen(Vector3 screenPos)
+    {
+        return screenPos.x >= 0 && screenPos.x <= canvasRect.rect.width &&
+               screenPos.y >= 0 && screenPos.y <= canvasRect.rect.height;
+    }
+    
 }

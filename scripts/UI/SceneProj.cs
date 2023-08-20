@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using playerscript;
+using System;
+
 public class SceneProj : MonoBehaviour
 {
     public Scene SceneProjector;
@@ -31,7 +33,21 @@ public class SceneProj : MonoBehaviour
         foreach (Transform obj in ObjectsInProjection)
         {
             var ghostobj = Instantiate(obj.gameObject,obj.position,obj.rotation);
-            ghostobj.GetComponent<Renderer>().enabled = false;
+            try
+            {
+                ghostobj.GetComponent<Renderer>().enabled = false;
+            }
+            catch
+            {
+            }
+            try
+            {
+                ghostobj.GetComponent<Terrain>().enabled = false;
+            }
+            catch
+            {
+            }
+           
             SceneManager.MoveGameObjectToScene(ghostobj,SceneProjector);
             if (!ghostobj.isStatic) _spawnedObjects.Add(obj, ghostobj.transform);
         }
