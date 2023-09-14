@@ -44,34 +44,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e214fae1cb9dfc8438ec69d203f65eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicVolume: 1
+  sfxVolume: 1
   SoundTracks:
   - name: Theme
     clip: {fileID: 8300000, guid: 916ad04f25ca15b438513dd6f83811ff, type: 3}
     volume: 0.484
     pitch: 1
     source: {fileID: 0}
+    type: 0
     loop: 1
   - name: Push
     clip: {fileID: 8300000, guid: 8111bee8114d27b43860b8f2bddc58ab, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
+    type: 1
     loop: 0
   - name: goal
     clip: {fileID: 8300000, guid: cab6b71ef1bba514fbf5cb8f2cdea57c, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
+    type: 1
     loop: 0
   - name: FPbell
     clip: {fileID: 8300000, guid: 29dc442fd925d7c4c96eb519fa9c14ca, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
+    type: 1
     loop: 0
-  - name: triggered
+  - name: TPclick
     clip: {fileID: 8300000, guid: d49bde0688a0f3b43adee4bdd9a0f85a, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
+    type: 1
     loop: 0
+  - name: Chalkcrack
+    clip: {fileID: 8300000, guid: 8709e2842c96b6d48bbc290d2e1d6f17, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    type: 1
+    loop: 0
+  - name: CorrectAnsounds
+    clip: {fileID: 8300000, guid: 7f340c2b99d138e4cb40eaf9e6b2cf55, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    type: 1
+    loop: 0
+  SensitivityX: 20
+  SensitivityY: 1

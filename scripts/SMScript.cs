@@ -1,15 +1,20 @@
 using System;
 using UnityEngine;
 using UnityEngine.Audio;
-
+using UnityEngine.UI;
+using Cinemachine;
 public class SMScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float musicVolume = 1;
+    public float sfxVolume = 1;
     public Sounds[] SoundTracks;
-   public static SMScript instance;
+    public float SensitivityX = 10;
+     public float SensitivityY = 1;
+    public static SMScript instance;
+    bool settingset;
+    
     void Awake()
     {
-
         if(instance == null)
         {
             instance = this;
@@ -28,6 +33,21 @@ public class SMScript : MonoBehaviour
             s.source.clip = s.clip;
             s.source.loop = s.loop;
         }
+     
+    }
+
+    void Update()
+    {   
+        
+        CinemachineFreeLook [] CTIM= FindObjectsOfType<CinemachineFreeLook>();
+            foreach (CinemachineFreeLook item in CTIM)
+            {
+                item.m_XAxis.m_MaxSpeed = SensitivityX;
+                item.m_YAxis.m_MaxSpeed = SensitivityY;
+        
+                
+            }
+        
     }
     void Start()
     {
@@ -38,4 +58,32 @@ public class SMScript : MonoBehaviour
         Sounds s = Array.Find(SoundTracks,Sounds =>Sounds.name == name);
         s.source.Play();
     }
+  public void MusicVolume(float v)
+{
+  
+    foreach (Sounds s in SoundTracks)
+    {
+      
+        if (s.type == Sounds.SoundType.Music)
+        {
+            s.source.volume = v;
+        }
+    }
+    musicVolume = v;
+}
+
+ public void SFXVolume(float v)
+{
+  
+    foreach (Sounds s in SoundTracks)
+    {
+      
+        if (s.type == Sounds.SoundType.SFX)
+        {
+            s.source.volume = v;
+        }
+    }
+    playtrack("FPbell");
+    sfxVolume = v;
+}
 }

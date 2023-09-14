@@ -1,50 +1,47 @@
+
 using System.Collections;
 using System.Collections.Generic;
-using playerscript;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class WaypointerIcon : MonoBehaviour
-{
-    public Transform target; // The object you want to follow
-    public RectTransform canvasRect; // Reference to the Canvas RectTransform
-
+{ public Transform targetObject;  // The object to follow
+    public float offset = 10f;      // Offset from the object's position
+    public float margin = 20f;      // Margin from the edge of the screen
     private RectTransform rectTransform;
+    private Camera mainCamera;
 
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
+        mainCamera = Camera.main;
     }
 
     private void Update()
     {
-        if (target != null)
+        if (targetObject != null)
         {
-            // Convert world position to screen space
-            Vector3 screenPos = Camera.main.WorldToScreenPoint(target.position);
+            // Convert the target object's position to screen space
+            Vector3 screenPos = mainCamera.WorldToScreenPoint(targetObject.position);
 
-            // Check if the object is off-screen
-            if (!IsInScreen(screenPos))
+            // Check if the object is within the screen boundaries
+            if (screenPos.z > 0 &&
+                screenPos.x >= margin && screenPos.x <= Screen.width - margin &&
+                screenPos.y >= margin && screenPos.y <= Screen.height - margin)
             {
-                // If off-screen, clamp it to the screen bounds
-                screenPos.x = Mathf.Clamp(screenPos.x, 0, canvasRect.rect.width);
-                screenPos.y = Mathf.Clamp(screenPos.y, 0, canvasRect.rect.height);
-
-                // Set the UI element's position
-                rectTransform.position = screenPos;
+                // Set the UI element's position to follow the object on the screen
+                rectTransform.position = screenPos + Vector3.up * offset;
             }
             else
             {
-                // If on-screen, set the UI element's position directly
-                rectTransform.position = screenPos;
+                // Object is out of the screen, keep the UI element inside the screen
+                Vector3 clampedPos = new Vector3(
+                    Mathf.Clamp(screenPos.x, margin, Screen.width - margin),
+                    Mathf.Clamp(screenPos.y, margin, Screen.height - margin),
+                    screenPos.z
+                );
+                rectTransform.position = clampedPos + Vector3.up * offset;
             }
         }
     }
-
-    private bool IsInScreen(Vector3 screenPos)
-    {
-        return screenPos.x >= 0 && screenPos.x <= canvasRect.rect.width &&
-               screenPos.y >= 0 && screenPos.y <= canvasRect.rect.height;
-    }
-    
 }

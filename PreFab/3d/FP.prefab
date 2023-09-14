@@ -120,7 +120,6 @@ GameObject:
   - component: {fileID: 3880956081452128473}
   - component: {fileID: 542032848040414200}
   - component: {fileID: 1034833524775532761}
-  - component: {fileID: 1100736297932277455}
   m_Layer: 0
   m_Name: Prism
   m_TagString: Untagged
@@ -136,13 +135,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 672133808876386037}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.89, z: 0}
+  m_LocalPosition: {x: 0, y: 0.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4139264832617004262}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_Father: {fileID: 4139264832229046292}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7543530144176078735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,20 +551,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 672133808876386037}
-  m_Mesh: {fileID: 0}
---- !u!64 &1100736297932277455
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 672133808876386037}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &1008090204888435895
 GameObject:
@@ -1108,7 +1093,7 @@ GameObject:
   - component: {fileID: 1648339148248532214}
   - component: {fileID: 6792442570283852920}
   m_Layer: 6
-  m_Name: FP
+  m_Name: FPMMicon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1195,7 +1180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FollowObject: {fileID: 4139264832229046292}
   minicam: {fileID: 0}
-  sizeDivider: 0.09
+  sizeDivider: 0.05
   mmspp: {fileID: 0}
   sideviewOn: 0
   svm: {fileID: 0}
@@ -1685,7 +1670,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &4882495825825007680
 MonoBehaviour:
@@ -2857,7 +2842,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8661871130216534967}
   m_Father: {fileID: 4139264832617004262}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2936,10 +2922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb974ef3737cd9458df99eae635707e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DissappearOnTrigger: {fileID: 0}
   thirdCam: {fileID: 0}
-  ApplyVelocity: {x: 0, y: 0, z: 0}
-  ExecutionDelay: 0
   Panel: {fileID: 616112109726075923}
   Xslider: {fileID: 6437117293072809160}
   Yslider: {fileID: 8158105560772835162}
@@ -2953,13 +2936,11 @@ MonoBehaviour:
   PMVM: {fileID: 0}
   SFprojector: {fileID: 0}
   SimTrig: 0
-  BlueForcePoint: 0
   looktooglebutton: {fileID: 4268620516464089068}
   mainhub: {fileID: 1944368399094370338}
   forectoapply: {x: 0, y: 0, z: 0}
   ProjectFP: {fileID: 0}
   previewsProjPF: {fileID: 0}
-  TPobjpointer: {fileID: 0}
   ImProjection: 0
   arrow: {fileID: 8661871130216534967}
   used: 0
@@ -3016,7 +2997,6 @@ Transform:
   - {fileID: 4139264832229046292}
   - {fileID: 2348619709476566723}
   - {fileID: 77257544917058044}
-  - {fileID: 8661871130216534967}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5671,5 +5651,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13554bbad69b2e04e83a89dac294e133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectToFollow: {fileID: 4139264832229046292}
-  margin: 0
+  targetObject: {fileID: 4139264832229046292}
+  offset: 10
+  margin: 300

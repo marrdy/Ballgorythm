@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using System;
+using Cinemachine;
 namespace playerscript{
 public class PlayerMovement : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject AAEbutton;
     public timerPush timercounter;
     public Goalscript gs;
-    
+    Vector3 currentSimulationForce;
     [SerializeField] public SceneProj _projection;
 
 
@@ -44,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
        
-        Vector3 currentSimulationForce = new Vector3(float.Parse(xvalue.text), float.Parse(yvalue.text), float.Parse(zvalue.text));
+         currentSimulationForce = new Vector3(float.Parse(xvalue.text), float.Parse(yvalue.text), float.Parse(zvalue.text));
     if (notyetpushed && currentSimulationForce != APforce && AimAssistExtend)
     {
         _projection.SimulateTrajectory(this, startpos, currentSimulationForce);
@@ -94,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Push()
     {
+         
         timercounter.counting = true;
         if (notyetpushed) {
 
@@ -119,12 +121,13 @@ public class PlayerMovement : MonoBehaviour
     }
     public void again()
     {
+         
         ShowEntToggle.SetActive(true);
         uimanager.ActivateControl(true);
         if (ActiveSinceFirstPlace) { ShowEntToggle.SetActive(true); }
         Vector3 simulationforce = new Vector3(float.Parse(xvalue.text), float.Parse(yvalue.text), float.Parse(zvalue.text));
         this.GetComponent<LineRenderer>().enabled = true;
-        _projection.SimulateTrajectory(this, startpos, simulationforce * 2);
+        _projection.SimulateTrajectory(this, startpos, simulationforce);
          ptext.text = "Push";
         notyetpushed = true;
         this.GetComponent<LineRenderer>().enabled = true;
@@ -137,11 +140,16 @@ public class PlayerMovement : MonoBehaviour
         cldplayer.isTrigger = false;
         ptext.text = "Push";
         trail.Clear();
-          SecondForce[] secondForceScripts = FindObjectsOfType<SecondForce>();
-            foreach (SecondForce secondForce in secondForceScripts)
+          TriggerPoint[] TP = FindObjectsOfType<TriggerPoint>();
+            foreach (TriggerPoint TrigPoint in TP)
             {
-                // Call TriggerBFP(false) on each object with the "SecondForce" script
-                secondForce.TriggerBFP(true);
+                TrigPoint.triggerobj.SetActive(true);
+            }
+            SecondForce[] SP = FindObjectsOfType<SecondForce>();
+            foreach (SecondForce Secpoint in SP)
+            {
+                
+                Secpoint.used = false;
             }
     }
 
@@ -172,5 +180,7 @@ public void ShowPan()
 {
     panel.gameObject.SetActive(true);
 }
+
 }
+
 }

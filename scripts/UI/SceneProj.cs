@@ -53,7 +53,7 @@ public class SceneProj : MonoBehaviour
         }
        
     }
-    private void Update()
+    private void Ulpdate()
         {
             foreach (var item in _spawnedObjects)
             {
@@ -107,4 +107,7 @@ public GameObject SimulateFP(SecondForce FP, Vector3 pos, Vector3 FPvalue,GameOb
       
         return ghostObj.gameObject;
     }
+
+   
+
 }

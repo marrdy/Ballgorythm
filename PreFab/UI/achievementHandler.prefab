@@ -133,20 +133,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AchievementTabList: {fileID: 5462774770421286126, guid: 0b3c467b82dff5c4fa4b8fb602b60477, type: 3}
   adder:
-  - AchivementName: Vector 3 in level 3
-    AchivementDescription: Understand how x, y z axis works(Complete level 3 ).
+  - AchivementName: Level 1 - v = d / t
+    AchivementDescription: Velociy = Distant / Time
     Achived: 0
-  - AchivementName: Speed of light.
-    AchivementDescription: 'Where are you now though?? Also the Console in the back
-      end is screaming...
-
-'
+  - AchivementName: "Level 2 : FNet =  \xB2\u221A(Nx\xB2 + Ny\xB2)"
+    AchivementDescription: "Net force = \xB2\u221A(Newton X\xB2+ Newton Y\xB2)"
     Achived: 0
-  - AchivementName: Plan B may 10 2023
-    AchivementDescription: Made within 2 days because we failed to explain a project
-      that actually help society...
+  - AchivementName: 'Level 3:  W = mg. '
+    AchivementDescription: Weight  = Mass x 9.81 (Force due to gravity)
     Achived: 0
-  - AchivementName: Force Point expert.
-    AchivementDescription: Complete the force point level without using the extend
-      aim assist in level 8.
+  - AchivementName: "Level 4 : Vm =  \xB2\u221A(a x\xB2 + a z\xB2)"
+    AchivementDescription: "Magnitude velocity = \xB2\u221A(acceleration x\xB2 +
+      Acceleration z\xB2)"
+    Achived: 0
+  - AchivementName: "Level 5 : Vm =  \xB2\u221A(a x\xB2 + a z\xB2+a y\xB2)"
+    AchivementDescription: "Magnitude velocity = \xB2\u221A(acceleration x\xB2 +
+      Acceleration y\xB2+ Acceleration z\xB2)"
+    Achived: 0
+  - AchivementName: 'Level 6: p = v x m'
+    AchivementDescription: Momentum = Velocity x Mass
+    Achived: 0
+  - AchivementName: 'Level 7: v = u + a x t'
+    AchivementDescription: Final velocity = Initial velocity + acceleration * time
+    Achived: 0
+  - AchivementName: "Level 8: s = \xBD(v+u)t"
+    AchivementDescription: "Displacement = \xBD x (final velocity + initial velocity)
+      x time"
+    Achived: 0
+  - AchivementName: "level 9: -a = (v\xB2 - u\xB2) / (s x t)"
+    AchivementDescription: "Deceleration = (final velocity\xB2 - initial velocity\xB2)
+      / (displacement x time)"
+    Achived: 0
+  - AchivementName: "level 9: -a = (v\xB2 - u\xB2) / (s x t)"
+    AchivementDescription: "Deceleration = (final velocity\xB2 - initial velocity\xB2)
+      / (displacement x time)"
+    Achived: 0
+  - AchivementName: "level 10: -KE = \xBDmv\xB2"
+    AchivementDescription: "Kinetic energy = \xBD x mass x velocity\xB2"
     Achived: 0

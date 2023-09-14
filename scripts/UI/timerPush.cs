@@ -8,10 +8,10 @@ public class timerPush : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    float TimeRemains;
+    public float TimeRemains;
     
     public bool counting;
-     float timeEnd;
+    public float timeEnd;
     float timeforstar;
     public float starlimitedtime;
     public Goalscript gs;
