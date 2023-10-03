@@ -378,7 +378,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 743.85, y: 1474.133}
+  m_SizeDelta: {x: 743.85, y: 2194.6409}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &295622365
 MonoBehaviour:
@@ -400,100 +400,72 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '**Three-Dimensional Space:**
-
-
-    Three-dimensional (3D) space refers
-    to the physical world that we inhabit, which is characterized by three spatial
-    dimensions: length, width, and height. These dimensions provide a framework for
-    describing the position and orientation of objects in the universe. The concept
+  m_text: "\r\n\r\n**Three-Dimensional Space:**\r\n\r\nThree-dimensional (3D) space
+    refers to the physical world that we inhabit, which is characterized by three
+    spatial dimensions: length, width, and height. These dimensions provide a framework
+    for describing the position and orientation of objects in the universe. The concept
     of 3D space is fundamental to our perception and understanding of the world,
     as it allows us to visualize and interact with objects in a realistic and immersive
-    manner.
-
-
-    In 3D space, each point is uniquely identified by three coordinates,
-    often represented as (x, y, z), where ''x'' represents the horizontal position,
-    ''y'' represents the vertical position, and ''z'' represents the depth or distance
+    manner.\r\n\r\nIn 3D space, each point is uniquely identified by three coordinates,
+    often represented as (x, y, z), where 'x' represents the horizontal position,
+    'y' represents the vertical position, and 'z' represents the depth or distance
     from the observer. These coordinates are typically measured in units such as
-    meters or feet, depending on the context.
-
-
-    With the help of these three
+    meters or feet, depending on the context.\r\n\r\nWith the help of these three
     dimensions, we can create representations of objects and scenes that appear solid
     and have depth. This is widely used in various fields, including computer graphics,
-    architecture, engineering, physics simulations, video games, and virtual reality.
-
-
-    For
+    architecture, engineering, physics simulations, video games, and virtual reality.\r\n\r\nFor
     example, in computer graphics, 3D models are used to create realistic characters
     and environments. In architecture and engineering, 3D models are utilized to
     visualize building designs and assess their structural integrity. In physics
     simulations, 3D space is employed to study complex systems, such as fluid dynamics
     or celestial motion. In video games and virtual reality, 3D space enables players
-    to explore and interact with virtual worlds as if they were part of them.
-
-
-    **Algorithm:**
-
-
-    An
+    to explore and interact with virtual worlds as if they were part of them.\r\n\r\n**Algorithm:**\r\n\r\nAn
     algorithm is a step-by-step set of instructions or a well-defined procedure that
     is followed to perform a specific task or solve a problem. It is a fundamental
     concept in computer science and forms the basis for designing and implementing
     computer programs. Algorithms provide a systematic approach to solving problems
-    efficiently and accurately.
-
-
-    The word "algorithm" traces its roots back
+    efficiently and accurately.\r\n\r\nThe word \"algorithm\" traces its roots back
     to the name of the Persian mathematician and scholar, Al-Khwarizmi, who lived
     in the 9th century. His work heavily influenced the development of arithmetic
-    and algebra, and he is often considered one of the fathers of computer science.
-
-
-    To
-    be effective, algorithms must have the following key characteristics:
-
-
-    1.
+    and algebra, and he is often considered one of the fathers of computer science.\r\n\r\nTo
+    be effective, algorithms must have the following key characteristics:\r\n\r\n1.
     **Input:** Algorithms take some input data or a set of initial conditions. This
-    input may vary depending on the problem to be solved.
-
-
-    2. **Output:** Algorithms
+    input may vary depending on the problem to be solved.\r\n\r\n2. **Output:** Algorithms
     produce the desired result or output after following the sequence of steps. The
     output could be a solution to a mathematical problem, a specific action, or a
-    processed dataset, among other things.
-
-
-    3. **Definiteness:** Algorithms
+    processed dataset, among other things.\r\n\r\n3. **Definiteness:** Algorithms
     must be well-defined and unambiguous. Each step should be precisely described,
-    leaving no room for ambiguity.
-
-
-    4. **Finiteness:** Algorithms must have
+    leaving no room for ambiguity.\r\n\r\n4. **Finiteness:** Algorithms must have
     a finite number of steps, meaning they should eventually terminate and provide
-    an answer or output. Infinite loops or indeterminate processes are undesirable.
-
-
-    5.
+    an answer or output. Infinite loops or indeterminate processes are undesirable.\r\n\r\n5.
     **Correctness:** Algorithms should produce the correct output for all valid inputs.
-    They need to be thoroughly tested and verified to ensure their correctness.
-
-
-    6.
+    They need to be thoroughly tested and verified to ensure their correctness.\r\n\r\n6.
     **Efficiency:** An efficient algorithm performs the task using the least amount
     of resources, such as time and memory. Efficiency is crucial when dealing with
-    large-scale problems or real-time applications.
-
-
-    Algorithms are used in
+    large-scale problems or real-time applications.\r\n\r\nAlgorithms are used in
     countless applications across various fields, including computer programming,
     data analysis, artificial intelligence, cryptography, optimization problems,
     search engines, routing algorithms, and more. They are the building blocks upon
     which software and technology are constructed, making them a central aspect of
     modern computing. As technology advances, the development of efficient algorithms
-    continues to be a critical area of research and innovation.'
+    continues to be a critical area of research and innovation.\r\n\r\n\r\n1. Net
+    Force (Newton's Second Law):\r\n\tFnet = m a\r\n2. Weight (Force due to gravity):\r\n\tW=
+    m g\r\n3. Velocity (Speed):\r\n\tv= d/t\r\n4. Momentum:\r\n\tp= m p\r\n5. Final
+    Velocity (with initial velocity, acceleration, and time):\r\n\tv= u + a t\r\n6.
+    Displacement (with initial velocity, time, and acceleration):\r\n\ts= u t + \xBD
+    at\xB2s\r\n7. Deceleration (Negative Acceleration):\r\n\t-a = (v-u)/t\r\n8. Kinetic
+    Energy:\r\n\tKE=\xBD m v\xB2\r\n\r\nFnet: Net Force - The total force acting
+    on an object (Newtons).\r\nW: Weight - The force due to gravity acting on an
+    object (Newtons).\r\nm: Mass - The amount of matter in an object (kilograms).\r\ng:
+    Acceleration due to Gravity - The acceleration caused by gravity (usually approximately
+    9.81 m/s\xB2 on Earth).\r\nv: Velocity - The speed of an object in a particular
+    direction (meters per second).\r\nd: Distance or Displacement - The length of
+    the path traveled (meters).\r\nt: Time - The duration of an event or motion (seconds).\r\np:
+    Momentum - The product of an object's mass and velocity (kilogram meters per
+    second).\r\nu: Initial Velocity - The velocity of an object at the beginning
+    of a motion (meters per second).\r\na: Acceleration - The rate of change of velocity
+    (meters per second squared).\r\nKE: Kinetic Energy - The energy an object possesses
+    due to its motion (Joules).\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fb0d0e38a42832d48b35460e42ed0174, type: 2}
   m_sharedMaterial: {fileID: -7092204176448380343, guid: fb0d0e38a42832d48b35460e42ed0174, type: 2}
@@ -520,14 +492,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.45
+  m_fontSize: 18.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1060,8 +1032,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -773.07526}
-  m_SizeDelta: {x: 800, y: 1546.1505}
+  m_AnchoredPosition: {x: 0, y: -1204.9309}
+  m_SizeDelta: {x: 800, y: 2409.8618}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1227612817
 MonoBehaviour:

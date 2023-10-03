@@ -37,9 +37,10 @@ public class Goalscript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        animator.SetTrigger("Flagdown");
         if (!stoped)
         {
-            animator.SetTrigger("Flagdown");
+          
             RBplayer.isKinematic = true;
             stoped = true;
         }

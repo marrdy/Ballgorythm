@@ -126,7 +126,7 @@ public class SecondForce : MonoBehaviour
         animator.Play("PlayerCam");
          mainhub.gameObject.SetActive(true);
         forectoapply = new Vector3(float.Parse(XtextValue.text), float.Parse(YtextValue.text), float.Parse(ZtextValue.text));
-        hideButton.GetComponent<UImanager>().ActivateControl(true);
+        FindAnyObjectByType<UImanager>().ActivateControl(true);
         try
         {
               GetComponent<TriggerPoint>().triggerobj.SetActive(true);

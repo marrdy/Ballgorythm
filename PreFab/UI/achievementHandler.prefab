@@ -164,10 +164,6 @@ MonoBehaviour:
     AchivementDescription: "Deceleration = (final velocity\xB2 - initial velocity\xB2)
       / (displacement x time)"
     Achived: 0
-  - AchivementName: "level 9: -a = (v\xB2 - u\xB2) / (s x t)"
-    AchivementDescription: "Deceleration = (final velocity\xB2 - initial velocity\xB2)
-      / (displacement x time)"
-    Achived: 0
-  - AchivementName: "level 10: -KE = \xBDmv\xB2"
+  - AchivementName: "level 10: KE = \xBDmv\xB2"
     AchivementDescription: "Kinetic energy = \xBD x mass x velocity\xB2"
     Achived: 0
