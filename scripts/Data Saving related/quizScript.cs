@@ -25,6 +25,7 @@ public class quizScript : MonoBehaviour
     public Image InfoPannel;
     public PlayerMovement PMM;
     public Goalscript GS;
+    
     float dur;
     bool done= false;
     [SerializeField][Range(1f,0f)] private float tolerance = 0.01f;
@@ -46,9 +47,9 @@ public class quizScript : MonoBehaviour
     Question.text = question;
     mass.text = "Mass:"+PMM.GetComponent<Rigidbody>().mass.ToString()+" KG";
     Dist.text = "Distances:"+Vector3.Distance(PMM.transform.position , GS.transform.position).ToString("0");
-    Xval.text = "X/1000 = "+Math.Abs(float.Parse(PMM.xvalue.text)/1000).ToString()+" Newton";
-    Yval.text = "Y/1000 = "+Math.Abs(float.Parse(PMM.yvalue.text)/1000).ToString()+" Newton";
-    Zval.text = "Z/1000 = "+Math.Abs(float.Parse(PMM.zvalue.text)/1000).ToString()+" Newton";
+    Xval.text = "X/1000 = "+Math.Abs(float.Parse(PMM.APforce.x.ToString())/1000).ToString()+" Newton";
+    Yval.text = "Y/1000 = "+Math.Abs(float.Parse(PMM.APforce.y.ToString())/1000).ToString()+" Newton";
+    Zval.text = "Z/1000 = "+Math.Abs(float.Parse(PMM.APforce.z.ToString())/1000).ToString()+" Newton";
     dur = PMM.timercounter.LimitedTime-PMM.timercounter.TimeRemains;
     Duration.text = "Time:"+dur.ToString("0.00");
     
@@ -92,6 +93,16 @@ public bool CheckAnswerIdent()
             QuizPannel.gameObject.SetActive(false);
             this.gameObject.GetComponentInChildren<TMP_Text>().color = Color.green;
             this.gameObject.GetComponentInChildren<TMP_Text>().text = "Quiz Done";
+            GS.starsEarned++;
+            GS.star3.color = Color.yellow;
+            if (GS.data.starsInlevels[GS.CurrentLevel - 1] < GS.starsEarned)
+            {
+               GS.data.starsInlevels[GS.CurrentLevel - 1] = GS.starsEarned;
+            }
+            LevelLocker datatosave = new LevelLocker();
+            datatosave.starsperlevel = GS.data.starsInlevels;
+            datatosave.CurrentLevel = GS.data.CurrentLevel;
+            DataSaver.ProgressData(datatosave);
             return true;
         }
         else
@@ -117,9 +128,9 @@ public bool CheckAnswerIdent()
     }
     public void calculateNetforce()
     {
-        float x = Math.Abs(float.Parse(PMM.xvalue.text)/1000);
-        float y = Math.Abs(float.Parse(PMM.yvalue.text)/1000);
-        float z = Math.Abs(float.Parse(PMM.zvalue.text)/1000); 
+        float x = Math.Abs(float.Parse(PMM.APforce.x.ToString())/1000);
+        float y = Math.Abs(float.Parse(PMM.APforce.y.ToString())/1000);
+        float z = Math.Abs(float.Parse(PMM.APforce.z.ToString())/1000); 
         float kg = PMM.GetComponent<Rigidbody>().mass;
         float totalNetForce= (float)Math.Sqrt(x*x + y*y + z*z);
         answer = totalNetForce.ToString("0.00");
@@ -141,9 +152,9 @@ public bool CheckAnswerIdent()
     }
     public void calculateVelocityOneSecDeftime()
     {
-        float x = Math.Abs(float.Parse(PMM.xvalue.text)/1000);
-        float y = Math.Abs(float.Parse(PMM.yvalue.text)/1000);
-        float z = Math.Abs(float.Parse(PMM.zvalue.text)/1000); 
+        float x = Math.Abs(float.Parse(PMM.APforce.x.ToString())/1000);
+        float y = Math.Abs(float.Parse(PMM.APforce.y.ToString())/1000);
+        float z = Math.Abs(float.Parse(PMM.APforce.z.ToString())/1000); 
         float mass = PMM.GetComponent<Rigidbody>().mass;
         float fnet= (float)Math.Sqrt(x*x + y*y + z*z);
         float v = fnet/mass;
@@ -156,9 +167,9 @@ public bool CheckAnswerIdent()
     }
     public void calculateMomentum()
     {
-        float forceX = Math.Abs(float.Parse(PMM.xvalue.text)/1000);
-        float forceY = Math.Abs(float.Parse(PMM.yvalue.text)/1000);
-        float forceZ = Math.Abs(float.Parse(PMM.zvalue.text)/1000);
+        float forceX = Math.Abs(float.Parse(PMM.APforce.x.ToString())/1000);
+        float forceY = Math.Abs(float.Parse(PMM.APforce.y.ToString())/1000);
+        float forceZ = Math.Abs(float.Parse(PMM.APforce.z.ToString())/1000);
         float mass = PMM.GetComponent<Rigidbody>().mass;
         float accelerationX = forceX / mass;
         float accelerationY = forceY / mass;
@@ -175,9 +186,9 @@ public bool CheckAnswerIdent()
     public void calculateFvelo(int time)
     {
         float mass = PMM.rb.mass;
-        float x = Math.Abs(float.Parse(PMM.xvalue.text)/1000);
-        float y = Math.Abs(float.Parse(PMM.yvalue.text)/1000);
-        float z = Math.Abs(float.Parse(PMM.zvalue.text)/1000);
+        float x = Math.Abs(float.Parse(PMM.APforce.x.ToString())/1000);
+        float y = Math.Abs(float.Parse(PMM.APforce.y.ToString())/1000);
+        float z = Math.Abs(float.Parse(PMM.APforce.z.ToString())/1000);
         float f = (float)Math.Sqrt(x*x + y*y + z*z);
         float a = f/mass;
         float v = 0 + a*time;
@@ -191,9 +202,9 @@ public bool CheckAnswerIdent()
     public void calculateDisplace(int time)
     {
         float mass = PMM.rb.mass;
-        float x = Math.Abs(float.Parse(PMM.xvalue.text)/1000);
-        float y = Math.Abs(float.Parse(PMM.yvalue.text)/1000);
-        float z = Math.Abs(float.Parse(PMM.zvalue.text)/1000);
+        float x = Math.Abs(float.Parse(PMM.APforce.x.ToString())/1000);
+        float y = Math.Abs(float.Parse(PMM.APforce.y.ToString())/1000);
+        float z = Math.Abs(float.Parse(PMM.APforce.z.ToString())/1000);
         float f = (float)Math.Sqrt(x*x + y*y + z*z);
         float a = f/mass;
         float v = 0 + a*time;
@@ -208,9 +219,9 @@ public bool CheckAnswerIdent()
     public void calculateDecelerate(int time)
     {
         float mass = PMM.rb.mass;
-        float x = Math.Abs(float.Parse(PMM.xvalue.text)/1000);
-        float y = Math.Abs(float.Parse(PMM.yvalue.text)/1000);
-        float z = Math.Abs(float.Parse(PMM.zvalue.text)/1000);
+        float x = Math.Abs(float.Parse(PMM.APforce.x.ToString())/1000);
+        float y = Math.Abs(float.Parse(PMM.APforce.y.ToString())/1000);
+        float z = Math.Abs(float.Parse(PMM.APforce.z.ToString())/1000);
         float f = (float)Math.Sqrt(x*x + y*y + z*z);
         float a = f/mass;
         float v = 0 + a*time;
@@ -225,9 +236,9 @@ public bool CheckAnswerIdent()
     public void calculateKE(int time)
     {
         float mass = PMM.rb.mass;
-        float x = Math.Abs(float.Parse(PMM.xvalue.text)/1000);
-        float y = Math.Abs(float.Parse(PMM.yvalue.text)/1000);
-        float z = Math.Abs(float.Parse(PMM.zvalue.text)/1000);
+        float x = Math.Abs(float.Parse(PMM.APforce.x.ToString())/1000);
+        float y = Math.Abs(float.Parse(PMM.APforce.y.ToString())/1000);
+        float z = Math.Abs(float.Parse(PMM.APforce.z.ToString())/1000);
         float f = (float)Math.Sqrt(x*x + y*y + z*z);
         float a = f/mass;
         float v = 0 + a*time;

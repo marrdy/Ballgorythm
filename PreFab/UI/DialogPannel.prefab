@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: text here
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 60a11b3f116d3e4428b511cfbbbdbbbc, type: 2}
-  m_sharedMaterial: {fileID: 5438503957157203836, guid: 60a11b3f116d3e4428b511cfbbbdbbbc, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 91869520eb37c144ca8202813220bffc, type: 2}
+  m_sharedMaterial: {fileID: -4291477133722118501, guid: 91869520eb37c144ca8202813220bffc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 47.3
+  m_fontSize: 30.3
   m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -520,3 +520,9 @@ MonoBehaviour:
     DialogLocalTrigger: {fileID: 3965115823819418887}
   FollowObject: 0
   PointAt: {fileID: 0}
+  s:
+    clip: {fileID: 0}
+    volume: 1
+    pitch: 3
+    source: {fileID: 0}
+    loop: 0

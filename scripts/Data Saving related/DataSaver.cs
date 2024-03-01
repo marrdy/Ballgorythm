@@ -8,6 +8,7 @@ public static class DataSaver
 {
     static string  PathForLevel = Application.persistentDataPath + "Progress.Lvlpg";
     static string  PathForAchivement = Application.persistentDataPath + "AchievementData.Lvlpg";
+    static string  PathForAgreement = Application.persistentDataPath + "agreement.Lvlpg";
 
     public static void AchivementDataSave(AchievementsLoader Info)
     {
@@ -108,4 +109,41 @@ public static class DataSaver
         }
         return closeapp;
    }
+    public static bool loadAgreement()
+    {
+        bool data = new();
+        if (File.Exists(PathForAgreement))
+        {
+
+            BinaryFormatter formater = new BinaryFormatter();
+            FileStream FS = new FileStream(PathForAgreement, FileMode.Open);
+            data = (bool)formater.Deserialize(FS);
+            FS.Close();
+            return data;
+        }
+        else
+        {
+            Debug.LogError("NO FILE LOADED");
+
+            BinaryFormatter BF = new BinaryFormatter();
+            FileStream FS = new FileStream(PathForAchivement, FileMode.Create);
+            data =false;
+            BF.Serialize(FS, data);
+            FS.Close();
+            return data;
+
+        }
+
+    }
+    public static void agreetoconsent(bool Info)
+    {
+
+
+        BinaryFormatter BF = new BinaryFormatter();
+        FileStream FS = new FileStream(PathForAgreement, FileMode.Create);
+        bool data = Info;
+        BF.Serialize(FS, data);
+        FS.Close();
+    }
+
 }

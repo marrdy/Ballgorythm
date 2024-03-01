@@ -7,7 +7,8 @@ using System;
 using Cinemachine;
 namespace playerscript{
 public class PlayerMovement : MonoBehaviour
-{   
+{
+    public bool freePlayMode;
    [Header("Variables")]
    [Space(10)]
     public Vector3 APforce;
@@ -16,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public bool OnSecondForce = false;
     public bool AimAssistExtend;
     public bool notyetpushed = true;
+    bool ActiveSinceFirstPlace;
     public Vector3 initvelo;
     Vector3 currentSimulationForce;
     [Header("Components")]
@@ -45,17 +47,17 @@ public class PlayerMovement : MonoBehaviour
     public Image star;
     public GameObject AAEbutton;
     [SerializeField] public SceneProj _projection;
-    bool ActiveSinceFirstPlace;
+   
     private void Update()
     {
        
         currentSimulationForce = new Vector3(float.Parse(xvalue.text), float.Parse(yvalue.text), float.Parse(zvalue.text));
-        if (notyetpushed && currentSimulationForce != APforce && AimAssistExtend)
+        if (notyetpushed && currentSimulationForce != APforce)
         {
-            _projection.SimulateTrajectory(this, startpos, currentSimulationForce);
+            _projection.SimulateTrajectory(this, transform.position, currentSimulationForce);
             APforce = currentSimulationForce;
         }
-
+           
     }
     void Start()
     {
@@ -84,7 +86,10 @@ public class PlayerMovement : MonoBehaviour
         timercounter.resettimer();
         rb.isKinematic = !rb.isKinematic;
         rb.isKinematic = !rb.isKinematic;
-        transform.position = startpos;
+            if (!freePlayMode)
+            {
+                transform.position = startpos;
+            }
         panel.enabled = true;
         notyetpushed = true;
         cldplayer.isTrigger = false;
@@ -114,13 +119,7 @@ public class PlayerMovement : MonoBehaviour
         zvalue.text = 0.ToString();
     }
 
-    public void ExtendAimAssist()
-    {       
-        AimAssistExtend = true;
-        AAEbutton.SetActive(false);
-        gs.NoAimAssist = false;
-        star.color = Color.gray;
-    }
+    
     public void hidepann()
     {
     panel.gameObject.SetActive(false);

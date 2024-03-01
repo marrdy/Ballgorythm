@@ -91,20 +91,13 @@ public class SceneProj : MonoBehaviour
    
 public GameObject SimulateFP(SecondForce FP, Vector3 pos, Vector3 FPvalue,GameObject previewsProj)
     {
-        try
-        {
-            Destroy(previewsProj);
-        }
-        catch
-        {
-        }
+        Destroy(previewsProj);
         var ghostObj = Instantiate(FP, pos, Quaternion.identity) ;
         ghostObj.used = false;
         ghostObj.forectoapply = FPvalue;
         SceneManager.MoveGameObjectToScene(ghostObj.gameObject, SceneProjector);
         ghostObj.name = "FPprojection";
         ghostObj.ImProjection =true;
-      
         return ghostObj.gameObject;
     }
 

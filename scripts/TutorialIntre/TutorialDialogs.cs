@@ -9,9 +9,10 @@ public class TutorialDialogs : MonoBehaviour
     
     public SetOfDialogs[] sod;
     int IndexDialog =0;
-
+    
     void Start()
     {
+        
        StartCoroutine("FirstMessage");
     }
 
@@ -74,6 +75,7 @@ public class TutorialDialogs : MonoBehaviour
       if(IndexDialog == index)
       {
         sod[IndexDialog].dcc.gameObject.SetActive(false);
+        
         IndexDialog++;
        // listrem.onClick.RemoveListener(delegate{nexdialog(sod[index].NextDialogTrigger.GetComponent<Button>(),index);});
         ShowDialog(IndexDialog);
@@ -106,11 +108,16 @@ public class TutorialDialogs : MonoBehaviour
     public class SetOfDialogs
     {
       [SerializeField] public DialogContentClass dcc;
-      [TextArea(3, 10)]   public string text;
+      [TextArea(3, 10)]  public string text;
         
         public GameObject[] controlToenable;
         public bool LocalTrigger = true;
         public GameObject NextDialogTrigger;
         public float SliderValueTrigger;
+       
     }
-  
+
+
+
+
+

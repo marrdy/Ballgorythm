@@ -6,12 +6,17 @@ public class generateFiles : MonoBehaviour
 {
     public AchievementsLoader achievementfiles;
     public LevelData levelprogressfiles;
-
+    public GameObject agreementform;
     private void Start()
     {
-        levelprogressfiles =DataSaver.loadlocklevel();
+        levelprogressfiles = DataSaver.loadlocklevel();
         AchievementAdder data = new AchievementAdder(achievementfiles);
-       achievementfiles.adder = data.achivecache;
+        achievementfiles.adder = data.achivecache;
+       
+    }
+    public void showagreement() 
+    {
+        agreementform.SetActive(!DataSaver.loadAgreement());
     }
     public void resetLevel()
     {
@@ -36,4 +41,9 @@ public class generateFiles : MonoBehaviour
         datatosave.adder = achievementfiles.adder;
         DataSaver.AchivementDataSave(datatosave);
      }
+
+    public void acceptAgreement() 
+    {
+        DataSaver.agreetoconsent(true);
+    }
 }

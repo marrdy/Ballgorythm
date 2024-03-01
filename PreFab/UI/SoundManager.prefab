@@ -49,7 +49,7 @@ MonoBehaviour:
   SoundTracks:
   - name: Theme
     clip: {fileID: 8300000, guid: 916ad04f25ca15b438513dd6f83811ff, type: 3}
-    volume: 0.484
+    volume: 0.13
     pitch: 1
     source: {fileID: 0}
     type: 0
@@ -96,5 +96,10 @@ MonoBehaviour:
     source: {fileID: 0}
     type: 1
     loop: 0
-  SensitivityX: 20
-  SensitivityY: 1
+  SensitivityX: 100
+  SensitivityY: 20
+  Font:
+  - {fileID: 11400000, guid: 91869520eb37c144ca8202813220bffc, type: 2}
+  - {fileID: 11400000, guid: ccf778a8002beec4895365c286f1b5b5, type: 2}
+  - {fileID: 11400000, guid: fb0d0e38a42832d48b35460e42ed0174, type: 2}
+  selectedFont: 0

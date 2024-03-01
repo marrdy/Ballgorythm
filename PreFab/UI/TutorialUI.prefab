@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5779292744013747650}
+  - component: {fileID: 5779292744013747646}
   - component: {fileID: 5779292744013747651}
   - component: {fileID: 5779292744013747648}
   - component: {fileID: 5779292744013747649}
-  - component: {fileID: 5779292744013747646}
   m_Layer: 5
   m_Name: TutorialUI
   m_TagString: Untagged
@@ -40,6 +40,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &5779292744013747646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5779292744013747647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c3e74d1e6c32a54bb27b43041844cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sod: []
 --- !u!223 &5779292744013747651
 Canvas:
   m_ObjectHideFlags: 0
@@ -59,7 +72,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 6
   m_TargetDisplay: 0
 --- !u!114 &5779292744013747648
 MonoBehaviour:
@@ -101,16 +114,3 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &5779292744013747646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5779292744013747647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c3e74d1e6c32a54bb27b43041844cd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sod: []

@@ -12,21 +12,21 @@ public class LevelStat : MonoBehaviour
      public Sprite Complete;
      public levelclass lc;
      public Image Star1;
-       public Image Star2;
-       public Image Star3;
+     public Image Star2;
+     public Image Star3;
 
        public void starslighter(int amountstars)
        {
         if(amountstars >=1)
         {
-            Star1.color = Color.yellow;
+            Star1.enabled = true;
              if(amountstars >=2)
                 {
-              Star2.color = Color.yellow;
-                     if(amountstars >=3)
+              Star2.enabled = true;
+                if (amountstars >=3)
                         {
-                        Star3.color = Color.yellow;
-                        }
+                        Star3.enabled = true;
+                }
 
                 }
 

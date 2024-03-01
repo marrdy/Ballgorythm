@@ -16,7 +16,6 @@ public AudioClip clip;
  public float pitch;
  [HideInInspector]
  public AudioSource source;
- 
  public SoundType type;
  public bool loop;
 }

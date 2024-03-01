@@ -31,9 +31,9 @@ public class SecondForce : MonoBehaviour
     public GameObject previewsProjPF;
     public bool ImProjection;
     public Transform arrow;
-    [HideInInspector]
-     private Vector3 previousSimulationForce;
-    [HideInInspector]
+   
+    [HideInInspector] private Vector3 previousSimulationForce;
+ 
     public bool used;
     public void toggleview(bool toggleOnPlayer)
     {
@@ -81,7 +81,7 @@ public class SecondForce : MonoBehaviour
                 FindAnyObjectByType<SMScript>().playtrack("FPbell");
                 used  = true;
             }
-          Debug.Log("Triggered");
+    
         
         }
 
@@ -104,7 +104,12 @@ public class SecondForce : MonoBehaviour
         Panel.SetActive(true);
         thirdCam.LookAt = this.transform;
         thirdCam.Follow = this.transform;
-        animator.Play("ViewOtherEnt");
+                if (!FindAnyObjectByType<CinemaCamScript>().FreeCamModeOn)
+                {
+                    animator.Play("ViewOtherEnt");
+                }
+             
+
         mainhub.gameObject.SetActive(false);
         try
         {
@@ -123,7 +128,11 @@ public class SecondForce : MonoBehaviour
      
         Panel.SetActive(false);
         looktooglebutton.gameObject.SetActive(false);
-        animator.Play("PlayerCam");
+            if (!FindAnyObjectByType<CinemaCamScript>().FreeCamModeOn)
+            {
+                animator.Play("PlayerCam");
+            }
+          
          mainhub.gameObject.SetActive(true);
         forectoapply = new Vector3(float.Parse(XtextValue.text), float.Parse(YtextValue.text), float.Parse(ZtextValue.text));
         FindAnyObjectByType<UImanager>().ActivateControl(true);
@@ -165,6 +174,7 @@ public class SecondForce : MonoBehaviour
         Vector3 axisArrowRot = Vector3.Cross(new Vector3(0, 1, 0), force);
        // arrow.transform.rotation = Quaternion.identity * Quaternion.LookRotation(axisArrowRot * angleArrow); 
             arrow.transform.rotation = Quaternion.identity * Quaternion.LookRotation(force, axisArrowRot * angleArrow);
+        
     }
 
     public void updateStatProjection()
@@ -172,12 +182,7 @@ public class SecondForce : MonoBehaviour
         
        previewsProjPF= ProjectFP.SimulateFP(this,this.transform.position,forectoapply,previewsProjPF);
     }
-  void start()
-  {
-   
-    ProjectionSlider();
-    
-  }
+
 }
 
 

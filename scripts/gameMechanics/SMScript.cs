@@ -3,15 +3,20 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using Cinemachine;
+using TMPro;
 public class SMScript : MonoBehaviour
 {
     public float musicVolume = 1;
     public float sfxVolume = 1;
+    public float vlvolume = 1;
     public Sounds[] SoundTracks;
     public float SensitivityX = 10;
-     public float SensitivityY = 1;
+    public float SensitivityY = 1;
     public static SMScript instance;
-    bool settingset;
+    public TMP_FontAsset[] Font;
+    public int selectedFont;
+    
+   
     
     void Awake()
     {
@@ -33,7 +38,7 @@ public class SMScript : MonoBehaviour
             s.source.clip = s.clip;
             s.source.loop = s.loop;
         }
-     
+        
     }
 
     void Update()
@@ -86,4 +91,8 @@ public class SMScript : MonoBehaviour
     playtrack("FPbell");
     sfxVolume = v;
 }
+    public void setFont() 
+    {
+    
+    }
 }

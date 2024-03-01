@@ -34,7 +34,13 @@ public class SCScript : MonoBehaviour
         animator.SetTrigger("FadeOut");
     }
 
-    
+    public void FreePlay()
+    {
+
+        SceneNumber = SceneManager.sceneCountInBuildSettings - 6;
+
+        animator.SetTrigger("FadeOut");
+    }
     public void aboutus()
     {
         
@@ -122,14 +128,14 @@ public void Settings()
    
        
    
-    StartCoroutine("ShowHud");
+    StartCoroutine(ShowHud());
     }
     IEnumerator ShowHud()
     {
         
         CMS.toggleview(true);
         yield return new WaitForSeconds(2);
-          mainhud.gameObject.SetActive(true);
+        mainhud.gameObject.SetActive(true);
     }
     public void quit()
     {
