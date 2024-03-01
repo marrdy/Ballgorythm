@@ -9,12 +9,15 @@ using Unity.Mathematics;
 using Unity.Burst.Intrinsics;
 public class quizScript : MonoBehaviour
 {
+    public AchivementDatasHolder quizHolder;
     public int quizNo;
     [TextArea(3, 10)]
     public string question;
     public string answer;
+    public string formula;
     public TMP_InputField AnswerSlot;
     public TMP_Text Question;
+    public TMP_Text formulaDisplay;
     public TMP_Text mass;
     public TMP_Text Dist;
     public TMP_Text Xval;
@@ -25,56 +28,60 @@ public class quizScript : MonoBehaviour
     public Image InfoPannel;
     public PlayerMovement PMM;
     public Goalscript GS;
-    
+    public float distance;
+    public AchivementDatas quizfromachievement;
     float dur;
     bool done= false;
-    [SerializeField][Range(1f,0f)] private float tolerance = 0.01f;
+    [SerializeField][Range(1f,0f)] private float tolerance =0.05f;
     void Start()
     {
-    AchievementsLoader loader = new AchievementsLoader();
-    achiveclass []VarLoaded;
-    AchievementAdder LoadedData = DataSaver.LoadAchievements(loader.adder);
-    VarLoaded = LoadedData.achivecache;
-    if(VarLoaded[quizNo].Achived)
+        quizfromachievement.achivementInfo = quizHolder.data.achivementInfo;
+        quizInitiate();
+    }
+    public void quizInitiate() 
     {
-        this.GetComponent<Button>().onClick.RemoveAllListeners();
-        this.gameObject.GetComponentInChildren<TMP_Text>().color = Color.green;
-        this.gameObject.GetComponentInChildren<TMP_Text>().text= "Quiz Done";
-        done= true;
-        return;
-    }
 
-    Question.text = question;
-    mass.text = "Mass:"+PMM.GetComponent<Rigidbody>().mass.ToString()+" KG";
-    Dist.text = "Distances:"+Vector3.Distance(PMM.transform.position , GS.transform.position).ToString("0");
-    Xval.text = "X/1000 = "+Math.Abs(float.Parse(PMM.APforce.x.ToString())/1000).ToString()+" Newton";
-    Yval.text = "Y/1000 = "+Math.Abs(float.Parse(PMM.APforce.y.ToString())/1000).ToString()+" Newton";
-    Zval.text = "Z/1000 = "+Math.Abs(float.Parse(PMM.APforce.z.ToString())/1000).ToString()+" Newton";
-    dur = PMM.timercounter.LimitedTime-PMM.timercounter.TimeRemains;
-    Duration.text = "Time:"+dur.ToString("0.00");
-    
+        quizfromachievement = DataSaver.loadAchivementDatas(quizfromachievement);
+        if (quizfromachievement.achivementInfo[quizNo].Achived)
+        {
+           
+            this.gameObject.GetComponentInChildren<TMP_Text>().color = Color.green;
+            this.gameObject.GetComponentInChildren<TMP_Text>().text = "Quiz";
+            done = true;
+            
+        }
+
+        Question.text = question;
+        formulaDisplay.text = formula;
+        mass.text = "Mass(m):" + PMM.GetComponent<Rigidbody>().mass.ToString() + " g";
+        distance = Vector3.Distance(PMM.transform.position, GS.transform.position);
+        Dist.text = "Distances(d):" + distance.ToString("0.00") + "m(meters)";
+        Xval.text = "X/1000 = " + Math.Abs(float.Parse(PMM.APforce.x.ToString()) / 1000).ToString() + " Newton";
+        Yval.text = "Y/1000 = " + Math.Abs(float.Parse(PMM.APforce.y.ToString()) / 1000).ToString() + " Newton";
+        Zval.text = "Z/1000 = " + Math.Abs(float.Parse(PMM.APforce.z.ToString()) / 1000).ToString() + " Newton";
+        dur = PMM.timercounter.LimitedTime - PMM.timercounter.TimeRemains;
+        Duration.text = "Time(t):" + dur.ToString("0.00")+" (sec)";
+
     }
-   public void showQuizBoard(bool set)
+    public void showQuizBoard(bool set)
    {
-      if(!done)
-      {
+      
         QuizPannel.gameObject.SetActive(set);
-      }  
+      
    }
    public void quizSaver(bool correct,string description)
    {
       AchievementsLoader loader = new AchievementsLoader();
     if(correct)
         {
-            achiveclass []VarLoaded;
-            AchievementAdder LoadedData = DataSaver.LoadAchievements(loader.adder);
-            VarLoaded = LoadedData.achivecache;
-            VarLoaded[quizNo].Achived = true;
-            VarLoaded[quizNo].AchivementDescription =description;
-            loader.adder = VarLoaded;
-            DataSaver.AchivementDataSave(loader);
+            
+            
+            quizfromachievement.achivementInfo[quizNo].Achived = true;
+            quizfromachievement.achivementInfo[quizNo].AchivementDescription = quizfromachievement.achivementInfo[quizNo].AchivementDescription + "Your answer: " + description;
+
+            DataSaver.SavingAchievement(quizfromachievement);
         }
-   }
+    }
    public void showInfo(bool set)
    {
       InfoPannel.gameObject.SetActive(set);
@@ -89,27 +96,29 @@ public bool CheckAnswerIdent()
         
         if (difference <= tolerance)
         {
-            FindAnyObjectByType<SMScript>().playtrack("CorrectAnsounds");
+           
             QuizPannel.gameObject.SetActive(false);
             this.gameObject.GetComponentInChildren<TMP_Text>().color = Color.green;
             this.gameObject.GetComponentInChildren<TMP_Text>().text = "Quiz Done";
             GS.starsEarned++;
             GS.star3.color = Color.yellow;
-            if (GS.data.starsInlevels[GS.CurrentLevel - 1] < GS.starsEarned)
-            {
-               GS.data.starsInlevels[GS.CurrentLevel - 1] = GS.starsEarned;
-            }
-            LevelLocker datatosave = new LevelLocker();
-            datatosave.starsperlevel = GS.data.starsInlevels;
-            datatosave.CurrentLevel = GS.data.CurrentLevel;
-            DataSaver.ProgressData(datatosave);
-            return true;
+            //if (GS.data.starsInlevels[GS.CurrentLevel - 1] < GS.starsEarned)
+            //{
+            //   GS.data.starsInlevels[GS.CurrentLevel - 1] = GS.starsEarned;
+            //}
+            //LevelLocker datatosave = new LevelLocker();
+            //datatosave.starsperlevel = GS.data.starsInlevels;
+            //datatosave.CurrentLevel = GS.data.CurrentLevel;
+            //DataSaver.ProgressData(datatosave);
+                FindAnyObjectByType<SMScript>().playtrack("CorrectAnsounds");
+                return true;
         }
         else
         {
-            FindAnyObjectByType<SMScript>().playtrack("Chalkcrack"); 
+           
             AnswerSlot.image.color = Color.red;
-        }
+            FindAnyObjectByType<SMScript>().playtrack("Chalkcrack");
+            }
     }
     
     Debug.Log("Answer:" + answer);
@@ -167,14 +176,12 @@ public bool CheckAnswerIdent()
     }
     public void calculateMomentum()
     {
-        float forceX = Math.Abs(float.Parse(PMM.APforce.x.ToString())/1000);
-        float forceY = Math.Abs(float.Parse(PMM.APforce.y.ToString())/1000);
-        float forceZ = Math.Abs(float.Parse(PMM.APforce.z.ToString())/1000);
+        float x = Math.Abs(float.Parse(PMM.APforce.x.ToString())/1000);
+        float y = Math.Abs(float.Parse(PMM.APforce.y.ToString())/1000);
+        float z = Math.Abs(float.Parse(PMM.APforce.z.ToString())/1000);
         float mass = PMM.GetComponent<Rigidbody>().mass;
-        float accelerationX = forceX / mass;
-        float accelerationY = forceY / mass;
-        float accelerationZ = forceZ / mass;
-        float v = Mathf.Sqrt((accelerationX * accelerationX) + (accelerationY * accelerationY) + (accelerationZ * accelerationZ));
+        float f = (float)Math.Sqrt(x * x + y * y + z * z);
+        float v = f / mass;
         float p = v*mass;
         answer = p.ToString("0.00");
         AchievementsLoader loader = new AchievementsLoader();

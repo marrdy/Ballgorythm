@@ -9,50 +9,58 @@ using System;
 public class LevelLocker : MonoBehaviour
 {
     public SCScript GoToLevel;
-    public int CurrentLevel;
-    public LevelStat[] lockLevels;
-    public int[] starsperlevel;
+    public LevelData lvldata;
+    public LevelStat lockLevels;
     public TMP_Text CurrentLevelLabel;
     private StarManager starManager; // Reference to the StarManager script
 
     void Start()
     {
-        starManager = FindObjectOfType<StarManager>(); // Find the StarManager script in the scene
-        LevelData load = DataSaver.loadlocklevel();
-        CurrentLevel = load.CurrentLevel; 
-        starsperlevel = load.starsInlevels;
-        CurrentLevelLabel.text = "Current level = " + (CurrentLevel+1).ToString();
+       starManager = FindObjectOfType<StarManager>(); // Find the StarManager script in the scene
+       lvldata = DataSaver.loadLevel(lvldata.stars);
+        CurrentLevelLabel.text = "Current Level : " + lvldata.currentlvl;
+        for (int i = 0; i < lvldata.currentlvl; i++)
+        {
+            int levelIndex = i+1;
+            GameObject lvlbutton = Instantiate(lockLevels.gameObject);
+            lvlbutton.transform.SetParent(transform);
+            lvlbutton.transform.localScale = new Vector3(1,1,1);
+            lvlbutton.GetComponent<Button>().onClick.AddListener(delegate { GoToLevel.FadeToNextScene(levelIndex); });
+            lvlbutton.GetComponent<LevelStat>().LevelNumText.text = levelIndex.ToString();
+            lvlbutton.GetComponent<LevelStat>().LockOrCheck.gameObject.SetActive(!(i+1 == lvldata.currentlvl));
+            switch (lvldata.stars[i]) 
+            {
+                case 0:
+                    lvlbutton.GetComponent<LevelStat>().Star1.gameObject.SetActive(false);
+                    lvlbutton.GetComponent<LevelStat>().Star2.gameObject.SetActive(false);
+                    lvlbutton.GetComponent<LevelStat>().Star3.gameObject.SetActive(false);
+                    break;
+                case 1:
+                    lvlbutton.GetComponent<LevelStat>().Star1.gameObject.SetActive(false);
+                    lvlbutton.GetComponent<LevelStat>().Star2.gameObject.SetActive(true);
+                    lvlbutton.GetComponent<LevelStat>().Star3.gameObject.SetActive(false);
+                    break;
+                case 2:
+                    lvlbutton.GetComponent<LevelStat>().Star1.gameObject.SetActive(true);
+                    lvlbutton.GetComponent<LevelStat>().Star2.gameObject.SetActive(false);
+                    lvlbutton.GetComponent<LevelStat>().Star3.gameObject.SetActive(true);
+                    break;
+                case 3:
+                    lvlbutton.GetComponent<LevelStat>().Star1.gameObject.SetActive(true);
+                    lvlbutton.GetComponent<LevelStat>().Star2.gameObject.SetActive(true);
+                    lvlbutton.GetComponent<LevelStat>().Star3.gameObject.SetActive(true);
+                    break;
+            }
+            
+        }
+       // CurrentLevelLabel.text = "Current level = " + (lvldata.CurrentLevel +1).ToString();
         loadLevelButtons();
       
     }
 
     public void loadLevelButtons()
     {
-        for (int i = 0; i < lockLevels.Length; i++)
-        {
-            LevelStat Ilvlstat =  lockLevels[i];
-            int levelIndex = i; // Create a local copy of i
-            Ilvlstat.gameObject.AddComponent<Button>().onClick.AddListener(delegate { GoToLevel.FadeToNextScene(levelIndex + 1); });
-            Ilvlstat.lc.levelnumber = i + 1;
-            Ilvlstat.LevelNumText.text = Ilvlstat.lc.levelnumber.ToString();
-            if (i <= CurrentLevel)
-            {
-                Ilvlstat.LockOrCheck.sprite = lockLevels[i].Complete;
-                    if (i == CurrentLevel)
-                 {
-                Ilvlstat.LockOrCheck.gameObject.SetActive(false);
-                 }
-            }
-           
-            if (i > CurrentLevel)
-            {
-               Ilvlstat.gameObject.GetComponent<Button>().interactable = false;
-               Ilvlstat.LockOrCheck.sprite = lockLevels[i].locker;
-            
-            }
-            Ilvlstat.lc.amountStars = starsperlevel[i] ;
-            Ilvlstat.starslighter(Ilvlstat.lc.amountStars);
-        }
+        
     }
 
    

@@ -6,21 +6,19 @@ using Cinemachine;
 using TMPro;
 public class SMScript : MonoBehaviour
 {
-    public float musicVolume = 1;
-    public float sfxVolume = 1;
-    public float vlvolume = 1;
+
+    public volumeSettings vs;
     public Sounds[] SoundTracks;
-    public float SensitivityX = 10;
-    public float SensitivityY = 1;
     public static SMScript instance;
-    public TMP_FontAsset[] Font;
-    public int selectedFont;
-    
-   
-    
+
+
+
+
+
     void Awake()
     {
-        if(instance == null)
+      
+        if (instance == null)
         {
             instance = this;
         }
@@ -30,7 +28,8 @@ public class SMScript : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(gameObject);
-        foreach(Sounds s in SoundTracks)
+        
+        foreach (Sounds s in SoundTracks)
         {
             s.source = this.gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
@@ -38,61 +37,82 @@ public class SMScript : MonoBehaviour
             s.source.clip = s.clip;
             s.source.loop = s.loop;
         }
-        
+     
     }
 
     void Update()
-    {   
-        
-        CinemachineFreeLook [] CTIM= FindObjectsOfType<CinemachineFreeLook>();
-            foreach (CinemachineFreeLook item in CTIM)
-            {
-                item.m_XAxis.m_MaxSpeed = SensitivityX;
-                item.m_YAxis.m_MaxSpeed = SensitivityY;
-        
-                
-            }
-        
+    {
+
+        CinemachineFreeLook[] CTIM = FindObjectsOfType<CinemachineFreeLook>();
+        foreach (CinemachineFreeLook item in CTIM)
+        {
+            item.m_XAxis.m_MaxSpeed = vs.SensitivityX;
+            item.m_YAxis.m_MaxSpeed = vs.SensitivityY;
+        }
+
     }
     void Start()
     {
+        loadSettings();
         playtrack("Theme");
     }
     public void playtrack(string name)
     {
-        Sounds s = Array.Find(SoundTracks,Sounds =>Sounds.name == name);
+        Sounds s = Array.Find(SoundTracks, Sounds => Sounds.name == name);
         s.source.Play();
     }
-  public void MusicVolume(float v)
-{
-  
-    foreach (Sounds s in SoundTracks)
+    public void MusicVolume(float v)
     {
-      
-        if (s.type == Sounds.SoundType.Music)
-        {
-            s.source.volume = v;
-        }
-    }
-    musicVolume = v;
-}
 
- public void SFXVolume(float v)
-{
-  
-    foreach (Sounds s in SoundTracks)
-    {
-      
-        if (s.type == Sounds.SoundType.SFX)
+        foreach (Sounds s in SoundTracks)
         {
-            s.source.volume = v;
+
+            if (s.type == Sounds.SoundType.Music)
+            {
+                s.source.volume = v;
+            }
         }
+        vs.musicVolume = v;
     }
-    playtrack("FPbell");
-    sfxVolume = v;
-}
-    public void setFont() 
+
+    public void SFXVolume(float v)
     {
-    
+
+        foreach (Sounds s in SoundTracks)
+        {
+
+            if (s.type == Sounds.SoundType.SFX)
+            {
+                s.source.volume = v;
+            }
+        }
+        
+        vs.sfxVolume = v;
     }
+    public void saveSettings(volumeSettings vset) 
+    {
+        vs = vset;
+        DataSaver.SaveVolSetValue(vs);
+    }
+    public void loadSettings()
+    {
+        vs =DataSaver.GetVolSetValue(vs);
+        MusicVolume(vs.musicVolume);
+        SFXVolume(vs.sfxVolume);
+    }
+
+}
+[System.Serializable]
+public class volumeSettings 
+{
+    [Range(0f, 1f)]
+    public float musicVolume = 1;
+    [Range(0f, 1f)]
+    public float sfxVolume = 1;
+    [Range(0f, 1f)]
+    public float vlvolume = 1;
+    public float SensitivityX = 10;
+    public float SensitivityY = 1;
+    public int selectedFont;
+    //public TMP_FontAsset[] Font;
 }

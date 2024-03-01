@@ -131,12 +131,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fcdc5b4d5b4c0e419d5d87acf7b9243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AchievementTabList: {fileID: 5462774770421286126, guid: 0b3c467b82dff5c4fa4b8fb602b60477, type: 3}
+  AchievementTabList: {fileID: 5462774770421286126, guid: 0b3c467b82dff5c4fa4b8fb602b60477,
+    type: 3}
   adder:
-  - AchivementName: Level 1 - v = d / t
+  - AchivementName: Level 1 - s = d / t
     AchivementDescription: Velociy = Distant / Time
     Achived: 0
-  - AchivementName: "Level 2 : FNet =  \xB2\u221A(Nx\xB2 + Ny\xB2)"
+  - AchivementName: "Level 2 : FNet =  \xB2\u221A(Nx\xB2 + Nz\xB2)"
     AchivementDescription: "Net force = \xB2\u221A(Newton X\xB2+ Newton Y\xB2)"
     Achived: 0
   - AchivementName: 'Level 3:  W = mg. '

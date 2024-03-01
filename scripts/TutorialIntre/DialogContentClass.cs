@@ -22,12 +22,17 @@ public class DialogContentClass : MonoBehaviour
     }
     private void Awake()
     {
-        while (sms == null)
+        bool stop = false;
+        int count = 0;
+        while (sms == null && !stop)
         {
+
             sms = FindAnyObjectByType<SMScript>();
+            count++;
+            stop = count >= 1000;
         }
-        Debug.Log("volume is " + sms.vlvolume);
-        s.volume = sms.vlvolume;
+        
+        s.volume = sms.vs.vlvolume;
         s.source = this.gameObject.AddComponent<AudioSource>();
         s.source.clip = s.clip;
         s.source.volume = s.volume;

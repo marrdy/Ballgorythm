@@ -8,21 +8,18 @@ using UnityEditor;
 public class AchievementsLoader : MonoBehaviour
 {
     public GameObject AchievementTabList;
-    public achiveclass[] adder;
-   
+    public AchivementDatas achivements;
+    public AchivementDatasHolder AchivementLIstHolder;
     private void Start()
     {
 
+        achivements.achivementInfo = AchivementLIstHolder.data.achivementInfo;
 
-        try
-        {
+
             LoadAchievements();
             Debug.Log("loaded");
-        }
-        catch 
-        {
-           
-        }
+       
+       
        
             SetUpData();
         Debug.Log("setted up");
@@ -31,9 +28,8 @@ public class AchievementsLoader : MonoBehaviour
     }
     public void SetUpData()
     {
-        try
-        {
-            foreach (achiveclass varia in adder)
+        
+            foreach (achiveclass varia in achivements.achivementInfo)
             {
                 int i = 0;
                 GameObject tab = Instantiate(AchievementTabList, transform.parent);
@@ -43,43 +39,17 @@ public class AchievementsLoader : MonoBehaviour
                 tab.GetComponent<AchievementTabs>().AchievedCheck.isOn = varia.Achived;
                 i++;
             }
-        }
-        
-        catch
-        {
-
-        }
+       
 
 
 
     }
-    public void ResetProgress()
-    {
-        foreach(achiveclass i in adder)
-        {
-            Debug.Log("LOADED ACHIEVEMENT:"+i.AchivementName);
-            i.Achived = false;
-        }
-        DataSaver.AchivementDataSave(this);
-        Debug.Log("New data save created...");
-    }
+  
     public void LoadAchievements()
     {
-       AchievementAdder LoadedData=  DataSaver.LoadAchievements(adder);
-      
-        if (LoadedData.achivecache.Length != 0 && LoadedData !=null)
-        {
-            adder = LoadedData.achivecache;
-            Debug.Log(LoadedData.achivecache.Length);
-        }
-        else
-        {
-            ResetProgress();
-            Debug.Log("No file found, new fresh file has been generated...");
-            LoadAchievements();
-        }
-      
+
+        achivements = DataSaver.loadAchivementDatas(achivements);
     }
-        
-    
+
+
 }

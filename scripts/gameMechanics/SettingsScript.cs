@@ -36,11 +36,11 @@ public class SettingsScript : MonoBehaviour
 
     public void ConfirmResetProgress()
     {
-       if(DataSaver.resetprogress())
-       {
-         Application.Quit();
-       }
 
+        if (DataSaver.resetprogress()) 
+        {
+            Application.Quit();
+        }
     }
 
     public void CancelResetProgress()

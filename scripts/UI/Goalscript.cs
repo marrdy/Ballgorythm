@@ -21,14 +21,15 @@ public class Goalscript : MonoBehaviour
     public CinemaCamScript ccs;
     public int starsEarned = 1;
     public Canvas compasshud;
-    public LevelData data;
+    
     private bool endPanelShown = false;
     public Image star2;
     public Image star3;
+    public LevelData lvldata;
     private void Start()
     {
         CurrentLevel = SceneManager.GetActiveScene().buildIndex;
-        data = DataSaver.loadlocklevel();
+        lvldata = DataSaver.loadLevel(lvldata.stars);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -49,11 +50,12 @@ public class Goalscript : MonoBehaviour
             LevelUpEvent.levelUp();
             mainhud.gameObject.SetActive(false);
         }
-        FindAnyObjectByType<SMScript>().playtrack("goal");
+     
         if (!endPanelShown)
         {
             StartCoroutine("ShowEndPannel");
         }
+        FindAnyObjectByType<SMScript>().playtrack("goal");
     }
 
     IEnumerator ShowEndPannel()
@@ -79,27 +81,18 @@ public class Goalscript : MonoBehaviour
     }
     public void updatedata() 
     {
-        // Calculate stars earned based on conditions
-        if (Intime)
+        lvldata.stars[SceneManager.GetActiveScene().buildIndex - 1]++;
+        if (lvldata.currentlvl == SceneManager.GetActiveScene().buildIndex) 
         {
-            starsEarned++;
+            lvldata.currentlvl++;
+        }
+        if (Intime) 
+        {
+            lvldata.stars[SceneManager.GetActiveScene().buildIndex - 1]++;
             star2.color = Color.yellow;
         }
+        DataSaver.SaveLevel(lvldata);
 
-        
-        if (data.CurrentLevel <= CurrentLevel - 1)
-        {
-            data.CurrentLevel++;
-        }
-        if (data.starsInlevels[CurrentLevel - 1] < starsEarned)
-        {
-            data.starsInlevels[CurrentLevel - 1] = starsEarned;
-        }
-
-        LevelLocker datatosave = new LevelLocker();
-        datatosave.starsperlevel = data.starsInlevels;
-        datatosave.CurrentLevel = data.CurrentLevel;
-        DataSaver.ProgressData(datatosave);
     }
     public void closeendpan()
     {

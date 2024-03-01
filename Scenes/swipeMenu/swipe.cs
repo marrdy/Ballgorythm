@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class swipe : MonoBehaviour
 {
     public Color[] colors;
-    public GameObject scrollbar, imageContent;
+    public GameObject scrollbar;
     private float scroll_pos = 0;
     float[] pos;
     private bool runIt = false;
@@ -14,7 +14,7 @@ public class swipe : MonoBehaviour
     private Button takeTheBtn;
     int btnNumber;
     // Start is called before the first frame update
-    
+
 
     // Update is called once per frame
     void Update()
@@ -59,16 +59,14 @@ public class swipe : MonoBehaviour
         {
             if (scroll_pos < pos[i] + (distance / 2) && scroll_pos > pos[i] - (distance / 2))
             {
-               
+
                 transform.GetChild(i).localScale = Vector2.Lerp(transform.GetChild(i).localScale, new Vector2(1f, 1f), 0.1f);
-                imageContent.transform.GetChild(i).localScale = Vector2.Lerp(imageContent.transform.GetChild(i).localScale, new Vector2(1.2f, 1.2f), 0.1f);
-                imageContent.transform.GetChild(i).GetComponent<Image>().color = colors[1];
+                
                 for (int j = 0; j < pos.Length; j++)
                 {
                     if (j != i)
                     {
-                        imageContent.transform.GetChild(j).GetComponent<Image>().color = colors[0];
-                        imageContent.transform.GetChild(j).localScale = Vector2.Lerp(imageContent.transform.GetChild(j).localScale, new Vector2(0.8f, 0.8f), 0.1f);
+                        
                         transform.GetChild(j).localScale = Vector2.Lerp(transform.GetChild(j).localScale, new Vector2(0.8f, 0.8f), 0.1f);
                     }
                 }
@@ -112,7 +110,26 @@ public class swipe : MonoBehaviour
             }
         }
 
-       
+
+    }
+    public void SwipeToNext()
+    {
+        btnNumber = Mathf.Min(btnNumber + 1, pos.Length - 1);
+        takeTheBtn = transform.GetChild(btnNumber).GetComponent<Button>();
+        takeTheBtn.transform.name = "clicked";
+        time = 0;
+        scroll_pos = (pos[btnNumber]);
+        runIt = true;
+    }
+
+    public void SwipeToPrevious()
+    {
+        btnNumber = Mathf.Max(btnNumber - 1, 0);
+        takeTheBtn = transform.GetChild(btnNumber).GetComponent<Button>();
+        takeTheBtn.transform.name = "clicked";
+        time = 0;
+        scroll_pos = (pos[btnNumber]);
+        runIt = true;
     }
 
 }

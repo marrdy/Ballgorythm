@@ -9,24 +9,16 @@ public class SCScript : MonoBehaviour
     public Animator animator;
     public Animator animateballNcam;
     private int SceneNumber;
-    public TMP_Text cl;
     public Rigidbody ballpush;
     public CinemaCamScript CMS;
     public Canvas mainhud;
+    public LevelData data;
+    public bool playing;
+
     private void Start()
     {
-        try
-        {
-            LevelData data = DataSaver.loadlocklevel();
-            cl.text = "Current level : "+data.CurrentLevel.ToString();
-        }
-        catch
-        {
-
-        }
-       
+        
     }
-
     public void FadeToNextScene(int scn)
     {
 
@@ -102,33 +94,16 @@ public void Settings()
 
     public void continuelevel()
     {
-        try
-        {
-            animateballNcam.Play("ballOut");
+        try{animateballNcam.Play("ballOut");} catch{}
 
-        }
-        catch
-        {
-
-        }
-       
-        LevelData data = DataSaver.loadlocklevel();
-        SceneNumber = data.CurrentLevel+1;
-        if (SceneNumber == 0)
-        {
-            SceneNumber = 1;
-        }
-        
+        SceneNumber = DataSaver.GetCurrentLevel(data);
         animator.SetTrigger("FadeOut");
     }
 
 
     public void startTheGame()
     {
-   
-       
-   
-    StartCoroutine(ShowHud());
+        if(playing)    StartCoroutine(ShowHud());
     }
     IEnumerator ShowHud()
     {

@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53a12e8878d095b49abfff83c1de06ba, type: 3}
+  m_Name: AchivementDatasHolder
+  m_EditorClassIdentifier: 
+  data:
+    achivementInfo:
+    - AchivementName: Level 1 - v = d / t
+      AchivementDescription: 'Using the Time and Distant, calculate the speed of
+        the ball.
+
+
+        Velociy = Distant / Time'
+      Achived: 0
+    - AchivementName: "Level 2 : FNet =  \xB2\u221A(Nx\xB2 + Ny\xB2)"
+      AchivementDescription: "What is the total net force applied to the ball?\n\nNet
+        force = \xB2\u221A(Newton X\xB2+ Newton Y\xB2)"
+      Achived: 0
+    - AchivementName: 'Level 3:  W = mg. '
+      AchivementDescription: 'Calculate the weight of the ball(the force that being
+        appied to the object by gravity).
+
+
+        Weight  = Mass x 9.81 (Force
+        due to gravity)'
+      Achived: 0
+    - AchivementName: "Level 4 : Vm =  \xB2\u221A(a x\xB2 + a z\xB2)"
+      AchivementDescription: "Calculate the Net force, then use the Newton's second
+        law to calculate the acceleration of the ball(m/s). DONT FORGET TO FIND THE
+        SQUARE ROOT OF THE RESULT\n\nMagnitude velocity = \xB2\u221A(acceleration
+        x\xB2 + Acceleration z\xB2)"
+      Achived: 0
+    - AchivementName: "Level 5 : Vm =  \xB2\u221A(a x\xB2 + a z\xB2+a y\xB2)"
+      AchivementDescription: "Calculate the magnitude velocity(m/s\xB2) of the ball.\n\nMagnitude
+        velocity = \xB2\u221A(acceleration x\xB2 + Acceleration y\xB2+ Acceleration
+        z\xB2)"
+      Achived: 0
+    - AchivementName: 'Level 6: p = v x m'
+      AchivementDescription: 'Calculate the momentum of the ball after applying force.
+
+
+        Momentum
+        = Velocity x Mass'
+      Achived: 0
+    - AchivementName: 'Level 7: v = u + a x t'
+      AchivementDescription: 'Calculate the final Velocity of the ball 3 seconds
+        after the force was applied.
+
+
+        Final velocity = Initial velocity
+        + acceleration * time'
+      Achived: 0
+    - AchivementName: "Level 8: s = \xBD(v+u)t"
+      AchivementDescription: "Calculate the displacement(meters) of the ball 2 seconds
+        after the force was applied.\n\nDisplacement = \xBD x (final velocity + initial
+        velocity) x time"
+      Achived: 0
+    - AchivementName: "level 9: -a = (v\xB2 - u\xB2) / (s x t)"
+      AchivementDescription: "Calculate the displacement(m) of the ball 2 seconds
+        after the force was applied , then use the result to calculate the deselereation(-m/s\xB2)
+        of the ball.\n\nDeceleration = (final velocity\xB2 - initial velocity\xB2)
+        / (displacement x time)"
+      Achived: 0
+    - AchivementName: "level 10: KE = \xBDmv\xB2"
+      AchivementDescription: "Calculate the Final velocity of the ball with in 3
+        seconds and then use the result to calculate the kinetic energy of the ball.\n\nKinetic
+        energy = \xBD x mass x velocity\xB2"
+      Achived: 0

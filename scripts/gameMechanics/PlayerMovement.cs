@@ -166,12 +166,13 @@ public class PlayerMovement : MonoBehaviour
             ShowEntToggle.SetActive(false);
             uimanager.ActivateControl(false);
             APforce = new Vector3(float.Parse(xvalue.text), float.Parse(yvalue.text), float.Parse(zvalue.text));
-            FindAnyObjectByType<SMScript>().playtrack("Push");
+         
             initpush(APforce);
             ptext.text = "Retry";
             notyetpushed = false;
             this.GetComponent<LineRenderer>().enabled = false;
-        }
+            FindAnyObjectByType<SMScript>().playtrack("Push");
+            }
         
         else
         {

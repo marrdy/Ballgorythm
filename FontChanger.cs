@@ -5,24 +5,21 @@ using TMPro;
 
 public class FontChanger : MonoBehaviour
 {
-    SMScript sms;
+    public int selecetedfont;
     
     public TMP_Text[] Alltext;
+    public TMP_FontAsset[] allFont;
     void Start()
     {
-        while(sms == null)
-        {
-            
-            sms = FindAnyObjectByType<SMScript>();
-           
-        }
+
+        selecetedfont = DataSaver.GetSetFont();
         setAlltextFont();
     }
     public void setAlltextFont() 
     {
         foreach (TMP_Text txt in Alltext)
         {
-            txt.font = sms.Font[sms.selectedFont];
+            txt.font = allFont[selecetedfont];
         }
     }
     // Update is called once per frame

@@ -12,43 +12,65 @@ public Slider voiceline;
 public Slider SensitivityX;
 public Slider SensitivityY;
 public TMP_Dropdown fontSelection;
-    SMScript Sms;
+    public volumeSettings vs;
     void Start()
     {
-        while (Sms == null) 
-        {
-            Sms = FindAnyObjectByType<SMScript>();
-        }
-    
-    MusicVslider.value = Sms.musicVolume;
-    sfxVslider.value = Sms.sfxVolume;
-    SensitivityX.value = Sms.SensitivityX;
-    SensitivityY.value = Sms.SensitivityY;
+
+      
+    callLoadSettings();
+   
+    }
+    public void setUIvalues()
+    {
+        MusicVslider.value = vs.musicVolume;
+        Debug.Log(vs.musicVolume);
+        sfxVslider.value = vs.sfxVolume;
+        Debug.Log(vs.sfxVolume);
+        SensitivityX.value = vs.SensitivityX;
+        SensitivityY.value = vs.SensitivityY;
+        fontSelection.value = vs.selectedFont;
     }
     public void SliderMusicSet()
     {
-    FindAnyObjectByType<SMScript>().MusicVolume(MusicVslider.value);
+        FindAnyObjectByType<SMScript>().MusicVolume(MusicVslider.value);
+        vs.musicVolume = MusicVslider.value;
     }
     public void SliderSFXset()
     {
-    FindAnyObjectByType<SMScript>().SFXVolume(sfxVslider.value);
+        FindAnyObjectByType<SMScript>().SFXVolume(sfxVslider.value);
+        FindAnyObjectByType<SMScript>().playtrack("FPbell");
+        vs.sfxVolume = sfxVslider.value;
     }
+   
     public void SliderSenssetX()
     {
-     FindAnyObjectByType<SMScript>().SensitivityX = SensitivityX.value;
+     vs.SensitivityX = SensitivityX.value;
     }
     public void SliderSenssetY()
     {
-     FindAnyObjectByType<SMScript>().SensitivityY= SensitivityY.value;
+    vs.SensitivityY= SensitivityY.value;
+        
     }
     public void VLVolume()
     {
-        FindAnyObjectByType<SMScript>().vlvolume = voiceline.value;
+        vs.vlvolume = voiceline.value;
     }
     public void SetFont()
     {
-        FindAnyObjectByType<SMScript>().selectedFont = fontSelection.value;
-        FindAnyObjectByType<FontChanger>().setAlltextFont();
+        vs.selectedFont = fontSelection.value;
+        FontChanger fc = FindAnyObjectByType<FontChanger>();
+        fc.selecetedfont = vs.selectedFont;
+        fc.setAlltextFont();
     }
-
+    public void callSaveSettings() 
+    {
+        DataSaver.SaveVolSetValue(vs);
+        FindAnyObjectByType<SMScript>().loadSettings();
+    }
+    public void callLoadSettings()
+    {
+        vs = DataSaver.GetVolSetValue(vs);
+        setUIvalues();
+    
+    }
 }

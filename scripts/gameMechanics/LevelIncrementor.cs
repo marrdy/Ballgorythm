@@ -10,8 +10,8 @@ public class LevelIncrementor : MonoBehaviour
 
     private void Start()
     {
-        LevelData data = DataSaver.loadlocklevel();
-        CurrentLevel = data.CurrentLevel;
+    //    LevelData data = DataSaver.loadlocklevel();
+    //    CurrentLevel = data.CurrentLevel;
         
     }
     public void levelUp()
@@ -22,8 +22,8 @@ public class LevelIncrementor : MonoBehaviour
             CurrentLevel++;
             
             LevelLocker save = new LevelLocker();
-            save.CurrentLevel = CurrentLevel;
-            DataSaver.ProgressData(save);
+            //save.CurrentLevel = CurrentLevel;
+            //DataSaver.ProgressData(save);
         }
     }
 }
